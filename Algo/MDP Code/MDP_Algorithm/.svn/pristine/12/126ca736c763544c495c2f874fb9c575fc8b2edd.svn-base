@@ -1,0 +1,166 @@
+package mdp.algorithm.simulator;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import mdp.algorithm.explore.*;
+
+public class Simulator {
+	
+	private static final Color DEFAULT = new Color(198,217,241);
+	private static final Color OBSTACLES = new Color(64,64,64);
+	private static final Color GOALSTART = Color.WHITE;
+	
+	private static final Color EXPLORED = new Color(255,255,102);
+	private static final Color ROBOT = new Color(146,208,80);
+	
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		frame.setTitle("Maze Simulator");
+		frame.setSize(600, 660);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		
+		final Maze mazeMap = new Maze();
+		final Exploration exploration = new Exploration();
+		
+		Container contentPane = frame.getContentPane();
+		contentPane.add(mazeMap, BorderLayout.CENTER);
+		
+		JPanel buttonPanel = new JPanel();
+		JButton explore = new JButton("Explore");
+        JButton timerExplore = new JButton("Timer Explore");
+        JButton percentExplore = new JButton("% Explore");
+        JButton solve = new JButton("Solve");
+        JButton reset = new JButton("Reset");
+
+        explore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Explore");
+                exploration.startExplore(mazeMap);
+            }
+        });  
+        
+        timerExplore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Timer Explore");
+            }
+        });  
+        
+        percentExplore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("% Explore");
+            }
+        });  
+        
+        solve.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Solve");
+            }
+        });  
+        
+        reset.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Reset");
+            }
+        });  
+        
+        buttonPanel.add(explore);
+        buttonPanel.add(timerExplore);
+        buttonPanel.add(percentExplore);
+        buttonPanel.add(solve);
+        buttonPanel.add(reset);
+		contentPane.add(buttonPanel, BorderLayout.SOUTH);
+		
+		JPanel rightPanel = new JPanel();
+		rightPanel.setLayout(new GridLayout(3, 1, 3, 3));
+		
+		JPanel legendPanel = new JPanel();
+		legendPanel.setLayout(new GridLayout(5, 2, 3, 3));
+		legendPanel.setBackground(Color.WHITE);
+		legendPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		JLabel title = new JLabel("LEGEND");
+		title.setFont(title.getFont().deriveFont(13.0F));
+		
+		JPanel defaultColorRect = new JPanel();
+		JPanel exploredColorRect = new JPanel();
+		JPanel obstaclesColorRect = new JPanel();
+		JPanel robotColorRect = new JPanel();
+		
+		JLabel defaultLabel = new JLabel("Default");
+		JLabel exploredLabel = new JLabel("Explored");
+		JLabel obstaclesLabel = new JLabel("Obstacles");
+		JLabel robotLabel = new JLabel("Robot");
+		
+		defaultColorRect.setBackground(DEFAULT);
+		exploredColorRect.setBackground(EXPLORED);
+		obstaclesColorRect.setBackground(OBSTACLES);
+		robotColorRect.setBackground(ROBOT);
+		
+		legendPanel.add(title);
+		legendPanel.add(new JLabel(" "));
+		legendPanel.add(defaultColorRect);
+		legendPanel.add(defaultLabel);
+		legendPanel.add(exploredColorRect);
+		legendPanel.add(exploredLabel);
+		legendPanel.add(obstaclesColorRect);
+		legendPanel.add(obstaclesLabel);
+		legendPanel.add(robotColorRect);
+		legendPanel.add(robotLabel);
+		
+		
+		JPanel exploreValuePanel = new JPanel();
+		exploreValuePanel.setLayout(new GridLayout(7, 1, 1, 1));
+		exploreValuePanel.setBackground(Color.WHITE);
+		exploreValuePanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		JLabel exploreTitle = new JLabel("EXPLORATION");
+		exploreTitle.setFont(exploreTitle.getFont().deriveFont(13.0F));
+		JLabel exploreTimelbl = new JLabel("Time: ");
+		JLabel explorePercentExploredlbl = new JLabel("% Map: ");
+		JLabel explorePercentObstacleslbl = new JLabel("% Obstacles: ");
+		JLabel blanklbl = new JLabel(" ");
+		JLabel fpTitle = new JLabel("FASTEST PATH");
+		fpTitle.setFont(exploreTitle.getFont().deriveFont(13.0F));
+		JLabel fpTimelbl = new JLabel("Time: ");
+		
+		exploreValuePanel.add(exploreTitle);
+		exploreValuePanel.add(exploreTimelbl);
+		exploreValuePanel.add(explorePercentExploredlbl);
+		exploreValuePanel.add(explorePercentObstacleslbl);
+		exploreValuePanel.add(blanklbl);
+		exploreValuePanel.add(fpTitle);
+		exploreValuePanel.add(fpTimelbl);
+		
+		rightPanel.add(legendPanel, BorderLayout.NORTH);
+		rightPanel.add(exploreValuePanel, BorderLayout.SOUTH);
+		contentPane.add(rightPanel, BorderLayout.EAST);
+		
+		frame.setVisible(true);
+	}
+}

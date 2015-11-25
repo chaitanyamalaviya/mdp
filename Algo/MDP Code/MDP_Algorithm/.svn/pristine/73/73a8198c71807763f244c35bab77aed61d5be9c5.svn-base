@@ -1,0 +1,19 @@
+package mdp.algorithm.explore;
+
+import mdp.algorithm.simulator.*;
+
+public class Exploration {
+
+	public void startExplore(Maze maze) {
+		//initial check
+		if (maze.checkObstacle(maze.getRobotMidPointRow(), maze.getRobotMidPointCol()+2))
+			maze.spinLeft();
+		else
+			maze.moveForward();
+		if (maze.checkObstacle(10, 6))
+			maze.spinRight();
+		else
+			maze.moveForward();
+	}
+	
+}

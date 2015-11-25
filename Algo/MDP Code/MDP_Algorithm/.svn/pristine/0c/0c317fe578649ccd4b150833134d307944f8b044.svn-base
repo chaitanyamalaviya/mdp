@@ -1,0 +1,319 @@
+package mdp.algorithm.fastestPath;
+
+import java.util.Stack;
+import java.awt.Point;
+
+import mdp.algorithm.simulator.*;
+
+
+/**
+ * @author      Iryanto Jaya
+ * @version     2.0
+ * @since       2014-09-07
+ */
+public class PathSolver {
+	
+	/**
+	 * Check if there are obstacles above the robot
+	 *
+	 * @param  location		The location of the robot
+	 * @param  maze			The maze
+	 * @return true if obstacle exist, false otherwise
+	 */
+	public boolean checkObstacleNorth(Point location,Maze maze){
+		if(maze.checkObstacle((int) location.getX()-2,(int) location.getY()-1)||
+				maze.checkObstacle((int) location.getX()-2,(int) location.getY())||
+				maze.checkObstacle((int) location.getX()-2,(int) location.getY()+1))
+			return true;
+		else
+			return false;
+	}
+	
+	/**
+	 * Check if there are obstacles below the robot
+	 *
+	 * @param  location		The location of the robot
+	 * @param  maze			The maze
+	 * @return true if obstacle exist, false otherwise
+	 */
+	public boolean checkObstacleSouth(Point location,Maze maze){
+		if(maze.checkObstacle((int) location.getX()+2,(int) location.getY()-1)||
+				maze.checkObstacle((int) location.getX()+2,(int) location.getY())||
+				maze.checkObstacle((int) location.getX()+2,(int) location.getY()+1))
+			return true;
+		else
+			return false;
+	}
+	
+	/**
+	 * Check if there are obstacles on the West of the robot
+	 *
+	 * @param  location		The location of the robot
+	 * @param  maze			The maze
+	 * @return true if obstacle exist, false otherwise
+	 */
+	public boolean checkObstacleWest(Point location,Maze maze){
+		if(maze.checkObstacle((int) location.getX()+1,(int) location.getY()-2)||
+				maze.checkObstacle((int) location.getX(),(int) location.getY()-2)||
+				maze.checkObstacle((int) location.getX()-1,(int) location.getY()-2))
+			return true;
+		else
+			return false;
+	}
+	
+	
+	/**
+	 * Check if there are obstacles on the East of the robot
+	 *
+	 * @param  location		The location of the robot
+	 * @param  maze			The maze
+	 * @return true if obstacle exist, false otherwise
+	 */
+	public boolean checkObstacleEast(Point location,Maze maze){
+		if(maze.checkObstacle((int) location.getX()+1,(int) location.getY()+2)||
+				maze.checkObstacle((int) location.getX(),(int) location.getY()+2)||
+				maze.checkObstacle((int) location.getX()-1,(int) location.getY()+2))
+			return true;
+		else
+			return false;
+	}
+	
+	/**
+	 * Using iterative deepening search to look for the path from the start to the goal
+	 * <p>
+	 * The minimum depth is 33 since there is no solvable path with less than 33 steps
+	 *
+	 * @param  root		The starting node
+	 * @param  goal		The goal node
+	 * @param  maze		The maze
+	 * @return The path that leads from the start to the goal
+	 */
+	public Stack<Point> iterativeDeepening(Point root,Point goal,Maze maze,int ori){
+		int depth = 33; //It is impossible to solve with less than 33 steps
+		Stack<Point> path = new Stack<Point>();
+		Boolean found = false;
+		
+		path.add(root);
+		
+		while(found==false){
+			path = dfs(root,goal,maze,depth,path,ori);
+			depth++;
+			if(path.contains(goal))
+				found = true;
+		}
+		System.out.println(path.toString());
+		return path;
+	}
+	
+	/**
+	 * Use DFS to search for goal for each depth level
+	 *
+	 * @param  current		The current node
+	 * @param  goal			The goal node
+	 * @param  maze			The maze
+	 * @param  depth		The depth limit of the search
+	 * @param  path			The stack that contains visited nodes
+	 * @return The path that leads from the start to the goal (if found)
+	 */
+	public Stack<Point> dfs(Point current,Point goal,Maze maze,int depth,Stack<Point> path, int ori){
+		Point tempPoint = new Point();
+		
+		//System.out.println(path.toString());
+		if(depth==0){
+			if(current.equals(goal))
+				path.add(current);
+			return path;
+		}
+		
+		if(ori==0){
+			//Check North
+			tempPoint.setLocation(current.getX()-1,current.getY());
+			if(!path.contains(tempPoint)){
+				if(!checkObstacleNorth(current,maze)&&!path.contains(goal)){
+					//Go North
+					ori = 0;
+					path = dfs(tempPoint, goal, maze, depth-1, path, ori);
+					if(path.contains(goal)){
+						path.add(current);
+						return path;
+					}
+				}
+			}
+			
+			//Check East
+			tempPoint.setLocation(current.getX(),current.getY()+1);
+			if(!path.contains(tempPoint)){
+				if(!checkObstacleEast(current,maze)&&!path.contains(goal)){
+					//Go to East
+					ori = 1;
+					path = dfs(tempPoint, goal, maze, depth-1, path, ori);
+					if(path.contains(goal)){
+						path.add(current);
+						return path;
+					}
+				}
+			}
+		}
+		else{
+			//Check East
+			tempPoint.setLocation(current.getX(),current.getY()+1);
+			if(!path.contains(tempPoint)){
+				if(!checkObstacleEast(current,maze)&&!path.contains(goal)){
+					//Go to East
+					ori = 1;
+					path = dfs(tempPoint, goal, maze, depth-1, path, ori);
+					if(path.contains(goal)){
+						path.add(current);
+						return path;
+					}
+				}
+			}
+			
+			//Check North
+			tempPoint.setLocation(current.getX()-1,current.getY());
+			if(!path.contains(tempPoint)){
+				if(!checkObstacleNorth(current,maze)&&!path.contains(goal)){
+					//Go North
+					ori = 0;
+					path = dfs(tempPoint, goal, maze, depth-1, path, ori);
+					if(path.contains(goal)){
+						path.add(current);
+						return path;
+					}
+				}
+			}
+		}
+		
+		//Check South
+		tempPoint.setLocation(current.getX()+1,current.getY());
+		if(!path.contains(tempPoint)){
+			if(!checkObstacleSouth(current,maze)&&!path.contains(goal)){
+				//Go South
+				ori = 2;
+				path = dfs(tempPoint, goal, maze, depth-1, path, ori);
+				if(path.contains(goal)){
+					path.add(current);
+					return path;
+				}
+			}
+		}
+		
+		//Check West
+		tempPoint.setLocation(current.getX(),current.getY()-1);
+		if(!path.contains(tempPoint)){
+			if(!checkObstacleWest(current,maze)&&!path.contains(goal)){
+				//Go to West
+				ori = 3;
+				path = dfs(tempPoint, goal, maze, depth-1, path, ori);
+				if(path.contains(goal)){
+					path.add(current);
+					return path;
+				}
+			}
+		}
+		
+		return path;
+	}
+	
+	/**
+	 * Move the robot after the search
+	 * <p>
+	 * The search result is obtained from the iterative deepening search
+	 *
+	 * @param  path   		The path from start to goal
+	 * @param  current		The current position of the robot, set to starting point when calling this method
+	 * @param  maze			The maze
+	 */
+	public void moveRobot(Stack<Point> path,Point current,Point goal,Maze maze, int ori){
+		Point tempPoint = new Point();
+		
+		//We don't need the root
+		path.pop();
+		
+		while(!tempPoint.equals(goal)){
+			if(ori==4)
+				ori = 0;
+			if(ori==-1)
+				ori = 3;
+			
+			tempPoint = path.pop();
+			
+			//If the next point is below the current point
+			if((tempPoint.getX()-current.getX()==1)&&(tempPoint.getY()-current.getY()==0)){
+				switch(ori){
+					case 0 : maze.moveBackward();
+							 break;
+					case 2 : maze.moveForward();
+					 		 break;
+					case 3 : maze.spinLeft(); 
+							 maze.moveForward();
+							 ori = 2;
+					 		 break;
+					case 1 : maze.spinRight(); 
+							 maze.moveForward();
+							 ori = 2;
+					 		 break;
+				}
+			}
+			
+			//If the next point is above the current point
+			if((tempPoint.getX()-current.getX()==-1)&&(tempPoint.getY()-current.getY()==0)){
+				switch(ori){
+					case 0 : maze.moveForward();
+							 break;
+					case 2 : maze.moveBackward();
+							 break;
+					case 3 : maze.spinRight(); 
+							 maze.moveForward();
+							 ori = 0;
+					 		 break;
+					case 1 : maze.spinLeft(); 
+							 maze.moveForward();
+							 ori = 0;
+					 		 break;
+				}
+			}
+			
+			//If the next point is on the East of the current point
+			if((tempPoint.getX()-current.getX()==0)&&(tempPoint.getY()-current.getY()==1)){
+				switch(ori){
+					case 0 : maze.spinRight(); 
+							 maze.moveForward();
+							 ori = 1;
+					 		 break;
+					case 2 : maze.spinLeft(); 
+							 maze.moveForward();
+							 ori = 1;
+					 		 break;
+					case 3 : maze.moveBackward();
+			 		 		 break;
+					case 1 : maze.moveForward();
+							 break;
+				}
+			}
+			
+			//If the next point is on the West of the current point
+			if((tempPoint.getX()-current.getX()==0)&&(tempPoint.getY()-current.getY()==-1)){
+				switch(ori){
+					case 0 : maze.spinLeft();
+							 maze.moveForward();
+							 ori = 3;
+					 		 break;
+					case 2 : maze.spinRight();
+							 maze.moveForward();
+							 ori = 3;
+					 		 break;
+					case 3 : maze.moveForward();
+							 break;
+					case 1 : maze.moveBackward();
+							 break;
+				}
+			}
+			
+			//Update the current position
+			current.setLocation(tempPoint.getX(),tempPoint.getY());
+		}
+		//ending point
+		//maze.stopTimer();
+	}
+}

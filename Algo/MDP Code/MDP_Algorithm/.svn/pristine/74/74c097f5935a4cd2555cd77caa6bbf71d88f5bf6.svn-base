@@ -1,0 +1,58 @@
+package mdp_Algorithm_Simulator;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class robot {
+	private static final Color ROBOT = new Color(146,208,80);
+	private static final int ROBOTROWSCOLUMNS = 3;
+	
+	JPanel[][] grid = new JPanel[ROBOTROWSCOLUMNS][ROBOTROWSCOLUMNS];
+	
+	public robot(){
+		robotUI();
+	}
+	
+	public void robotUI(){
+		setLayout(new GridLayout(ROBOTROWSCOLUMNS, ROBOTROWSCOLUMNS, 3, 3));
+    	
+        for (int i = 0;i<ROWS;i++){
+        	for (int j = 0;j<COLUMNS;j++){
+        		JPanel newCell = new JPanel();
+        		//Colour cells
+        		if(((i==1 || i==2 || i==3) && (j==13 || j==14 || j==15)) || ((i==18 || i==19 || i==20) && (j==1 || j==2 || j==3)))
+        			newCell.setBackground(GOALSTART);
+        		else if(i==0 || i==21 || j==0 || j==16)
+        			newCell.setBackground(OBSTACLES);
+        		else{
+        			newCell.setBackground(DEFAULT);
+        		
+	        		//onClick
+					newCell.addMouseListener(new MouseAdapter() {
+		               	@Override
+		               	public void mouseClicked(MouseEvent e) {
+		               		JPanel clickedPanel = (JPanel) e.getSource();
+		               		if(clickedPanel.getBackground() == DEFAULT)
+		               			clickedPanel.setBackground(OBSTACLES);
+		               		else
+		               			clickedPanel.setBackground(DEFAULT);
+		                }
+		             });
+				}
+        		grid[i][j] = newCell;
+				cells[i][j] = new JLabel();
+        		
+				
+				
+				grid[i][j].add(cells[i][j]);
+				add(newCell);
+	        }
+        }
+	}
+
+}

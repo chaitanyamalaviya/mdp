@@ -1,0 +1,65 @@
+package mdp.algorithm.simulator;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class Student extends JFrame {
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame frame = new JFrame("Splashing");
+                StudentView view = new StudentView();
+                frame.getContentPane().add(view);
+                frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+                frame.setMinimumSize(new Dimension(800, 450));
+                frame.setLocationRelativeTo(null); // Center
+                frame.pack();
+                frame.setVisible(true);
+            }
+        });
+    }
+
+    static class StudentView extends JPanel {
+        JPanel jpnl1 = new JPanel();
+        JPanel southPanel = new JPanel();
+        JButton jbtReadFile1 = new JButton("Get Student Names");
+        JButton jbtReadFile2 = new JButton("Get Student Grades");
+        JTextField jtxtFilePath = new JTextField();
+        JLabel jlblDesc = new JLabel("Click a button to open each file!");
+        JTextArea jtxtAfileContents = new JTextArea();
+
+        StudentView() {
+            this.setLayout(new BorderLayout(5, 10));
+            jpnl1.setLayout(new GridLayout(2, 2));
+            jpnl1.add(jlblDesc);
+            //jpnl1.add(jtxtFilePath);
+            jbtReadFile2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            jtxtAfileContents.setText(collectGrades());
+                        }
+                    });
+                }
+            });
+            southPanel.add(jbtReadFile1);
+            southPanel.add(jbtReadFile2);
+            add(southPanel, BorderLayout.SOUTH);
+            add(jpnl1, BorderLayout.NORTH);
+            add(jtxtAfileContents, BorderLayout.CENTER);
+        }
+
+        private String collectGrades() {
+            StringBuilder builder = new StringBuilder("Hello World");
+            builder.append("More info");
+            return builder.toString();
+        }
+    }
+}

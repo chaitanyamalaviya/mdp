@@ -1,0 +1,20 @@
+package mdp.algorithm.explore;
+
+import java.awt.Point;
+
+public class Algorithm { 
+	
+	private int MAP_ROW, MAP_COL;
+	private int determineOrientation[][];
+	private int exploration[][];
+	
+	public Algorithm(int mapRow, int mapCol) {
+		MAP_ROW = mapRow;
+		MAP_COL = mapCol;
+		
+		determineOrientation = new int[MAP_ROW][MAP_COL];
+		exploration = new int[MAP_ROW][MAP_COL];
+	}
+
+	
+}

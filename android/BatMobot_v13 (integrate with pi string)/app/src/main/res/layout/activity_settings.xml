@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <CheckBox
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/phoneMotionCtrl"
+        android:id="@+id/motionFnCheckBox"
+        android:textSize="25sp"
+        android:button="@drawable/custom_checkbox_design"
+        android:checked="false" />
+
+
+    <!--
+    <Button
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Motion Function"
+         android:id="@+id/motionFunction" />
+    -->
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="#B8B894" />
+
+     <LinearLayout
+         android:orientation="horizontal"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="30dp">
+
+         <RelativeLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textAppearance="?android:attr/textAppearanceLarge"
+                 android:text="@string/f1_str"
+                 android:id="@+id/tvF1setting"
+                 android:layout_alignParentTop="true"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentStart="true"
+                 android:textSize="30sp" />
+
+             <EditText
+                 android:id="@+id/etCommandF1"
+                 android:layout_width="250dp"
+                 android:layout_height="wrap_content"
+                 android:hint="@string/hintCmd_str"
+                 android:layout_below="@+id/tvF1setting"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentStart="true" />
+
+             <Button
+                 android:id="@+id/btnSaveF1"
+                 android:layout_width="100dp"
+                 android:layout_height="wrap_content"
+                 android:text="@string/save_str"
+                 android:padding="20dp"
+                 android:layout_below="@+id/etCommandF1" />
+
+         </RelativeLayout>
+
+         <RelativeLayout
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginLeft="50dp">
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textAppearance="?android:attr/textAppearanceLarge"
+                 android:text="@string/f2_str"
+                 android:id="@+id/tvF2setting"
+                 android:layout_alignParentTop="true"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentStart="true"
+                 android:textSize="30sp" />
+
+             <EditText
+                 android:id="@+id/etCommandF2"
+                 android:layout_width="250dp"
+                 android:layout_height="wrap_content"
+                 android:hint="@string/hintCmd_str"
+                 android:layout_below="@+id/tvF2setting"
+                 android:layout_alignParentLeft="true"
+                 android:layout_alignParentStart="true" />
+
+             <Button
+                 android:id="@+id/btnSaveF2"
+                 android:layout_width="100dp"
+                 android:layout_height="wrap_content"
+                 android:text="@string/save_str"
+                 android:padding="20dp"
+                 android:layout_below="@+id/etCommandF2"/>
+
+         </RelativeLayout>
+     </LinearLayout>
+
+
+ </LinearLayout>

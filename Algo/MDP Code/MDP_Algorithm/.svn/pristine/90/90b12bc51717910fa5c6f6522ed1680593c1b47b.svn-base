@@ -1,0 +1,49 @@
+public class GUI extends JFrame implements MouseListener{
+
+JFrame myFrame = new JFrame();
+JLabel myPanels[];
+
+    public GUI(){
+
+        super("Grid");
+        setSize(1000,400);
+        setResizable(false);
+        setLayout(new GridLayout(12,25));
+        addMouseListener(this);
+
+        myPanels = new JLabel[300];
+
+        for (int x = 0;x<myPanels.length;x++){
+
+            myPanels[x]=new JLabel("");
+            myPanels[x].setOpaque(true);
+            myPanels[x].setBackground(Color.BLUE);
+            myPanels[x].setBorder(BorderFactory.createLineBorder(Color.black));
+        }
+//Add all the squares (JLabels)
+        for (int x = 0;x<myPanels.length;x++)
+        add(myPanels[x]);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    //iterate through all JPanels to determine clicked one  
+        for (int x = 0;x<myPanels.length;x++){
+        if (e.getX()>myPanels[x].getX()&&e.getX()<(myPanels[x].getX()+myPanels[x].getWidth()))
+
+        {
+
+            if(e.getY()>myPanels[x].getY()&&e.getY()<(myPanels[x].getY()+myPanels[x].getHeight())){
+        //Toggle colours    
+        if (myPanels[x].getBackground()==Color.blue)
+        myPanels[x].setBackground(Color.red);
+
+        else {myPanels[x].setBackground(Color.blue);}
+          }
+        }
+       }
+     }
+
+
+
+}

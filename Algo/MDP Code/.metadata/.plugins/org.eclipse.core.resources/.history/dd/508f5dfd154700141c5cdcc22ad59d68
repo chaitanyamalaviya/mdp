@@ -1,0 +1,454 @@
+package mdp.algorithm.explore;
+
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.Stack;
+
+import mdp.algorithm.fastestPath.PathSolver;
+import mdp.algorithm.simulator.*;
+
+public class Exploration {
+	
+	private int robotOrientation;
+	private int robotMidPointRow, robotMidPointCol; //Robot's current position
+	private int verticalCounter, horizontalCounter, operator;
+	private int sensorF1LocationRow, sensorF1LocationCol, sensorF2LocationRow, sensorF2LocationCol, sensorF3LocationRow, sensorF3LocationCol;//Three sensors for front
+	private int sensorL1LocationRow, sensorL1LocationCol, sensorL2LocationRow, sensorL2LocationCol; //Left Sensors 
+	private int sensorR1LocationRow, sensorR1LocationCol, sensorR2LocationRow, sensorR2LocationCol; //Right sensor (MID)
+	private int virtualMap[][]; //Creating a virtual memory for the robot to remember
+	
+	private static final int MAP_ROW = 22, MAP_COL = 17;
+	private static final int UNKNOWN = 0, EXPLORED = 1, OBSTACLES = 2, ROBOTPOSITION = 3 ;
+	private static final int NORTH = 0, EAST = 1, WEST = 2, SOUTH = 3;
+	
+	private Maze maze;
+	
+	//Initializing necessary components for the robot to explore.
+	public void initRobot(Maze maze, int startRow, int startCol) {
+		this.maze = maze;
+		maze.setRobotMidPoint(startRow, startCol);
+		robotMidPointRow = this.maze.getRobotMidPointRow();
+		robotMidPointCol = this.maze.getRobotMidPointCol();
+		robotOrientation = maze.getRobotOrientation();
+		initSensorLocations();
+		System.out.println("Sensors Initialised.");
+		initObstacles();
+		
+		initVirtualMap();
+		System.out.println("Virtual Map Initialised.");
+		
+		System.out.println("Obstacles Ready.");
+		System.out.println("Robot Operationally Ready.");
+		
+		printVirtualMap();
+		System.out.println("---- Ready to Explore! --------");
+	}
+	
+	//Initializing virtual map
+	private void initVirtualMap() {
+		virtualMap = new int[MAP_ROW][MAP_COL];
+		
+		for (int row = 0; row < MAP_ROW; row++)
+			for (int col = 0; col < MAP_COL; col++)
+				virtualMap[row][col] = UNKNOWN;
+		
+		virtualMap[robotMidPointRow-1][robotMidPointCol-1] = ROBOTPOSITION;
+		virtualMap[robotMidPointRow-1][robotMidPointCol] = ROBOTPOSITION;
+		virtualMap[robotMidPointRow-1][robotMidPointCol+1] = ROBOTPOSITION;
+		
+		virtualMap[robotMidPointRow][robotMidPointCol-1] = ROBOTPOSITION;
+		virtualMap[robotMidPointRow][robotMidPointCol] = ROBOTPOSITION;
+		virtualMap[robotMidPointRow][robotMidPointCol+1] = ROBOTPOSITION;
+		
+		virtualMap[robotMidPointRow+1][robotMidPointCol-1] = ROBOTPOSITION;
+		virtualMap[robotMidPointRow+1][robotMidPointCol] = ROBOTPOSITION;
+		virtualMap[robotMidPointRow+1][robotMidPointCol+1] = ROBOTPOSITION;
+		
+		isFrontBlocked();
+		isLeftBlocked();
+		isRightBlocked();
+		
+	}
+	
+	//Initializing robot's sensor
+	private void initSensorLocations() {
+		int row, col;
+		switch(robotOrientation) {
+		//NORTH
+		case 0:	row = robotMidPointRow-2;
+				sensorF1LocationRow = sensorF2LocationRow = sensorF3LocationRow = row;
+				sensorF1LocationCol = robotMidPointCol-1;
+				sensorF2LocationCol = robotMidPointCol;
+				sensorF3LocationCol = robotMidPointCol+1;
+				
+				sensorL1LocationRow = sensorR1LocationRow = robotMidPointRow-1;
+				sensorL2LocationRow = sensorR2LocationRow = robotMidPointRow;
+				sensorL1LocationCol = sensorL2LocationCol = robotMidPointCol-2;
+				sensorR1LocationCol = sensorR2LocationCol = robotMidPointCol+2;
+				break;
+		//EAST
+		case 1:	col = robotMidPointCol+2;
+				sensorF1LocationCol = sensorF2LocationCol = sensorF3LocationCol = col;
+				sensorF1LocationRow = robotMidPointRow-1;
+				sensorF2LocationRow = robotMidPointRow;
+				sensorF3LocationRow = robotMidPointRow+1;
+				
+				sensorL1LocationCol = sensorR1LocationCol = robotMidPointCol+1;
+				sensorL2LocationCol = sensorR2LocationCol = robotMidPointCol;
+				sensorL1LocationRow = sensorL2LocationRow = robotMidPointRow-2;
+				sensorR1LocationRow = sensorR2LocationRow = robotMidPointRow+2;
+				break;
+		//SOUTH
+		case 2:	row = robotMidPointRow+2;
+				sensorF1LocationRow = sensorF2LocationRow = sensorF3LocationRow = row;
+				sensorF1LocationCol = robotMidPointCol+1;
+				sensorF2LocationCol = robotMidPointCol;
+				sensorF3LocationCol = robotMidPointCol-1;
+				
+				sensorL1LocationRow = sensorR1LocationRow = robotMidPointRow+1;
+				sensorL2LocationRow = sensorR2LocationRow = robotMidPointRow;
+				sensorL1LocationCol = sensorL2LocationCol = robotMidPointCol+2;
+				sensorR1LocationCol = sensorR2LocationCol = robotMidPointCol-2;
+				break;
+		//WEST
+		default:col = robotMidPointCol-2;
+				sensorF1LocationCol = sensorF2LocationCol = sensorF3LocationCol = col;
+				sensorF1LocationRow = robotMidPointRow+1;
+				sensorF2LocationRow = robotMidPointRow;
+				sensorF3LocationRow = robotMidPointRow-1;
+				
+				sensorL1LocationCol = sensorR1LocationCol = robotMidPointCol-1;
+				sensorL2LocationCol = sensorR2LocationCol = robotMidPointCol;
+				sensorL1LocationRow = sensorL2LocationRow = robotMidPointRow+2;
+				sensorR1LocationRow = sensorR2LocationRow = robotMidPointRow-2;
+				break;
+		}
+		System.out.println("Telemetric Information Updated.");
+	}
+	
+	//Loading initial obstacles
+	private void initObstacles() {
+		maze.setObstacles(1,10);
+		maze.setObstacles(2,10);
+		maze.setObstacles(4,4);
+		maze.setObstacles(4,5);
+		maze.setObstacles(5,4);
+		maze.setObstacles(5,5);
+		maze.setObstacles(8,1);
+		maze.setObstacles(8,2);
+		maze.setObstacles(8,3);
+		maze.setObstacles(8,12);
+		maze.setObstacles(8,13);
+		maze.setObstacles(9,12);
+		maze.setObstacles(9,13);
+		maze.setObstacles(10,12);
+		maze.setObstacles(10,13);
+		maze.setObstacles(11,5);
+		maze.setObstacles(11,12);
+		maze.setObstacles(11,13);
+		maze.setObstacles(11,14);
+		maze.setObstacles(11,15);
+		maze.setObstacles(12,5);
+		maze.setObstacles(13,5);
+		maze.setObstacles(14,5);
+		maze.setObstacles(18,8);
+		maze.setObstacles(18,9);
+		maze.setObstacles(19,8);
+		maze.setObstacles(19,9);
+		//maze.setObstacles(robotMidPointRow,robotMidPointCol+2);
+	}
+	
+	//Method to ask the robot to start exploring.
+	public boolean startExplore() { //change to boolean later
+		//initial check
+		System.out.println("Begin Explore");
+		if (mapCoverage() == MAP_ROW*MAP_COL)
+			System.out.println("Maze Complete");//return false;
+		else {
+			Point phase1 = phaseOne(new Point(0,0), new Stack<Point>());
+			System.out.println("Phase 1 Completed.");
+			printVirtualMap();
+			phaseTwo(phase1, 0, new ArrayList<Point>());
+			System.out.println("Current Point: " + virtualMidPoint());
+			//PathSolver ps = new PathSolver();
+			//ps.moveRobot(ps.iterativeDeepening(virtualMidPoint(), new Point(19,2), maze, maze.getRobotOrientation()), virtualMidPoint(), new Point(19,2), maze, maze.getRobotOrientation());
+			System.out.println("Final Map in Memory:\n");
+			printVirtualMap();
+		}	
+		maze.stopTimerEnqueue();
+		return false;
+	}
+	
+	//AI for robot to decide what the next move should be.
+	
+	public boolean stop() {
+		System.out.println("Stop");
+		return false;
+	}
+	
+	private boolean isFrontBlocked() {
+		boolean hasObstacles = (maze.checkObstacle(sensorF1LocationRow, sensorF1LocationCol) || 
+				maze.checkObstacle(sensorF2LocationRow, sensorF2LocationCol) || 
+						maze.checkObstacle(sensorF3LocationRow, sensorF3LocationCol));
+		System.out.println("Currently Sensing (" + sensorF1LocationRow + ", " + sensorF1LocationCol + "), (" + sensorF2LocationRow + ", " + sensorF2LocationCol + "), (" + sensorF3LocationRow + ", " + sensorF3LocationCol + ")");
+		virtualMap[sensorF1LocationRow][sensorF1LocationCol] = (maze.checkObstacle(sensorF1LocationRow, sensorF1LocationCol) ? OBSTACLES : EXPLORED);
+		virtualMap[sensorF2LocationRow][sensorF2LocationCol] = (maze.checkObstacle(sensorF2LocationRow, sensorF2LocationCol) ? OBSTACLES : EXPLORED);
+		virtualMap[sensorF3LocationRow][sensorF3LocationCol] = (maze.checkObstacle(sensorF3LocationRow, sensorF3LocationCol) ? OBSTACLES : EXPLORED);
+		
+		return hasObstacles;
+	}
+	
+	private boolean isLeftBlocked() {
+		boolean hasObstacles = maze.checkObstacle(sensorL1LocationRow, sensorL1LocationCol) || maze.checkObstacle(sensorL2LocationRow, sensorL2LocationCol);
+		
+		virtualMap[sensorL1LocationRow][sensorL1LocationCol] = (maze.checkObstacle(sensorL1LocationRow, sensorL1LocationCol) ? OBSTACLES : EXPLORED);
+		virtualMap[sensorL2LocationRow][sensorL2LocationCol] = (maze.checkObstacle(sensorL2LocationRow, sensorL2LocationCol) ? OBSTACLES : EXPLORED);
+		
+		return hasObstacles;
+	}
+
+	private boolean isRightBlocked() {
+		boolean hasObstacles = maze.checkObstacle(sensorR1LocationRow, sensorR1LocationCol) || maze.checkObstacle(sensorR2LocationRow, sensorR2LocationCol);
+		
+		virtualMap[sensorR1LocationRow][sensorR1LocationCol] = (maze.checkObstacle(sensorR1LocationRow, sensorR1LocationCol) ? OBSTACLES : EXPLORED);
+		virtualMap[sensorR2LocationRow][sensorR2LocationCol] = (maze.checkObstacle(sensorR2LocationRow, sensorR2LocationCol) ? OBSTACLES : EXPLORED);
+		
+		return hasObstacles;
+	}
+	
+	private void moveForward() {
+		//if (!isFrontBlocked()) {
+			maze.moveForward();
+			switch(robotOrientation) {
+			case 0:	--robotMidPointRow;
+					virtualMap[robotMidPointRow-1][robotMidPointCol-1] = ROBOTPOSITION;
+					virtualMap[robotMidPointRow-1][robotMidPointCol] = ROBOTPOSITION;
+					virtualMap[robotMidPointRow-1][robotMidPointCol+1] = ROBOTPOSITION;
+					
+					virtualMap[robotMidPointRow+2][robotMidPointCol-1] = EXPLORED;
+					virtualMap[robotMidPointRow+2][robotMidPointCol] = EXPLORED;
+					virtualMap[robotMidPointRow+2][robotMidPointCol+1] = EXPLORED;
+					break;
+			case 1:	++robotMidPointCol;
+					virtualMap[robotMidPointRow+1][robotMidPointCol+1] = ROBOTPOSITION;
+					virtualMap[robotMidPointRow][robotMidPointCol+1] = ROBOTPOSITION;
+					virtualMap[robotMidPointRow-1][robotMidPointCol+1] = ROBOTPOSITION;
+					
+					virtualMap[robotMidPointRow+1][robotMidPointCol-2] = EXPLORED;
+					virtualMap[robotMidPointRow][robotMidPointCol-2] = EXPLORED;
+					virtualMap[robotMidPointRow-1][robotMidPointCol-2] = EXPLORED;
+					break;
+			case 2: ++robotMidPointRow;
+					virtualMap[robotMidPointRow+1][robotMidPointCol-1] = ROBOTPOSITION;
+					virtualMap[robotMidPointRow+1][robotMidPointCol] = ROBOTPOSITION;
+					virtualMap[robotMidPointRow+1][robotMidPointCol+1] = ROBOTPOSITION;
+					
+					virtualMap[robotMidPointRow-2][robotMidPointCol-1] = EXPLORED;
+					virtualMap[robotMidPointRow-2][robotMidPointCol] = EXPLORED;
+					virtualMap[robotMidPointRow-2][robotMidPointCol+1] = EXPLORED;
+					break;
+			default:--robotMidPointCol;
+					virtualMap[robotMidPointRow+1][robotMidPointCol-1] = ROBOTPOSITION;
+					virtualMap[robotMidPointRow][robotMidPointCol-1] = ROBOTPOSITION;
+					virtualMap[robotMidPointRow-1][robotMidPointCol-1] = ROBOTPOSITION;
+					
+					virtualMap[robotMidPointRow+1][robotMidPointCol+2] = EXPLORED;
+					virtualMap[robotMidPointRow][robotMidPointCol+2] = EXPLORED;
+					virtualMap[robotMidPointRow-1][robotMidPointCol+2] = EXPLORED;
+			}
+			initSensorLocations();
+			isLeftBlocked();
+			isRightBlocked();
+			//isFrontBlocked();
+			System.out.println("Advanced one grid.");
+		//}
+	}
+	
+	private void spinRight() {
+		maze.spinRight();
+		robotOrientation = (robotOrientation + 1)%4;
+		initSensorLocations();
+	}
+	
+	private void spinLeft() {
+		maze.spinLeft();
+		robotOrientation = (robotOrientation - 1)%4;
+		initSensorLocations();
+	}
+	
+	private int mapCoverage() {
+		int gridsCovered = 0;
+		for (int i = 0; i < MAP_ROW; i++)
+			for (int j = 0; j < MAP_COL; j++) {
+				if ((virtualMap[i][j] == 1) || (virtualMap[i][j] == 2))
+					gridsCovered++;
+			}
+		return gridsCovered;
+	}
+	
+	private Point phaseOne(Point displacement, Stack<Point> visited) {
+		Point tempPoint = new Point();
+		visited.add(displacement);
+		if (atEdge(displacement))
+			return displacement;
+		else {
+			tempPoint.setLocation((int)displacement.getX()+1, (int)displacement.getY());
+			if (!isFrontBlocked() && !atEdge(displacement) && !visited.contains(tempPoint)) {
+				moveForward();
+				displacement = phaseOne(tempPoint, visited);
+			} 
+			tempPoint.setLocation((int)displacement.getX(), (int)displacement.getY()+1);
+			if(!isRightBlocked() && !atEdge(displacement) && !visited.contains(tempPoint)) {
+				spinRight();
+				moveForward();
+				spinLeft();
+				displacement = phaseOne(tempPoint, visited);
+			}
+			tempPoint.setLocation((int)displacement.getX(), (int)displacement.getY()-1);
+			if (!isLeftBlocked() && !atEdge(displacement) && !visited.contains(tempPoint)) {
+				spinLeft();
+				moveForward();
+				spinRight();
+				displacement = phaseOne(tempPoint, visited);
+			}
+			tempPoint.setLocation((int)displacement.getX()-1, (int)displacement.getY());
+			if (!atEdge(displacement) && !visited.contains(tempPoint)) {
+				spinRight();
+				spinRight();
+				moveForward();
+				spinRight();
+				spinRight();
+				displacement = phaseOne(tempPoint, visited);
+			}
+			return displacement;
+		}
+	}
+	
+	private boolean phaseTwo(Point current, int orientation, ArrayList<Point> visited) {
+		boolean finish = false;
+		Point tempPoint = new Point();
+		visited.add(current);
+		if (hasPath()) {//coverage > 300
+			finish = true;
+			return finish;
+		}
+		
+		if (!isFrontBlocked() && !finish) {
+			moveForward();
+			System.out.println("Robot's Midpoint (" + robotMidPointRow + "," + robotMidPointCol +")");
+			switch (orientation) {
+				case 0:	tempPoint.setLocation(current.getX()-1, current.getY());
+						break;
+				case 1:	tempPoint.setLocation(current.getX(), current.getY()+1);
+						break;
+				case 3:	tempPoint.setLocation(current.getX(), current.getY()-1);
+						break;
+				case 2: tempPoint.setLocation(current.getX()+1, current.getY());
+						break;
+			}
+			
+			System.out.println("-------------------- MF");
+			//printVirtualMap();
+			
+			if (!visited.contains(tempPoint))
+				finish = phaseTwo(tempPoint, orientation, visited);
+		}
+		if (!isRightBlocked() && !finish) {
+			spinRight();
+			if(!isFrontBlocked()) {
+				moveForward();
+				System.out.println("Robot's Midpoint (" + robotMidPointRow + "," + robotMidPointCol +")");
+				switch (orientation) {
+					case 3:	tempPoint.setLocation(current.getX()-1, current.getY());
+							break;
+					case 0:	tempPoint.setLocation(current.getX(), current.getY()+1);
+							break;
+					case 2:	tempPoint.setLocation(current.getX(), current.getY()-1);
+							break;
+					case 1: tempPoint.setLocation(current.getX()+1, current.getY());
+							break;
+				}
+			}
+			
+			orientation = (orientation + 1) % 4;
+			System.out.println("-------------------- MR");
+			//printVirtualMap();
+			
+			if (!visited.contains(tempPoint))
+				finish = phaseTwo(tempPoint, orientation, visited);
+		}
+		if (!isLeftBlocked() && !finish) {
+			spinLeft();
+			if(!isFrontBlocked()) {
+				moveForward();
+				System.out.println("Robot's Midpoint (" + robotMidPointRow + "," + robotMidPointCol +")");
+				switch (orientation) {
+					case 1:	tempPoint.setLocation(current.getX()-1, current.getY());
+							break;
+					case 2:	tempPoint.setLocation(current.getX(), current.getY()+1);
+							break;
+					case 0:	tempPoint.setLocation(current.getX(), current.getY()-1);
+							break;
+					case 3: tempPoint.setLocation(current.getX()+1, current.getY());
+							break;
+				}
+			}
+			orientation = (orientation - 1) % 4;
+			System.out.println("-------------------- ML");
+			//printVirtualMap();
+			
+			if (!visited.contains(tempPoint))
+				finish = phaseTwo(tempPoint, orientation, visited);
+		}
+		if (!finish) {
+			orientation = (orientation - 2) % 4;
+			spinRight();
+			spinRight();
+			moveForward();
+			System.out.println("Robot's Midpoint (" + robotMidPointRow + "," + robotMidPointCol +")");
+			System.out.println("-------------------- BACK");
+			//printVirtualMap();
+		}
+		
+		visited.remove(visited.size()-1);
+		return finish;
+	}
+	
+	private boolean hasPath() {
+		if (((virtualMap[17][1]%2 == 1 && virtualMap[17][2]%2 == 1 && virtualMap[17][3]%2 == 1) || (virtualMap[18][4]%2 == 1 && virtualMap[19][4]%2 == 1 && virtualMap[20][4] %2== 1)) && 
+				((virtualMap[1][12]%2 == 1 && virtualMap[2][12]%2 == 1 && virtualMap[3][12]%2 == 1)|| (virtualMap[4][13]%2 == 1 && virtualMap[4][14]%2 == 1 && virtualMap[4][15]%2 == 1)))
+			return true;
+		else
+			return false;
+	}
+	
+	
+	
+	private boolean atEdge(Point displacement) {
+		return (displacement.getX() == 8 || displacement.getX() == -9) || (displacement.getY() == 6 || displacement.getY() == -6);
+	}
+	
+	private void printVirtualMap() {
+		System.out.println("\n");
+		for (int row = 0; row < MAP_ROW; row++) {
+			for (int col = 0; col < MAP_COL; col++)
+				System.out.print(virtualMap[row][col] + "	");
+			System.out.println("\n");
+		}
+	}
+	
+	private Point virtualMidPoint() {
+		int x=0, y=0;
+		for (int i = 0; i < MAP_ROW; i++) {
+			for (int j = 0; j < MAP_COL; j++) {
+				if (virtualMap[i][j] == 3) {
+					x = i+1;
+					y = j+1;
+					break;
+				}
+			}
+		}
+		return new Point(x, y);
+	}
+	
+}

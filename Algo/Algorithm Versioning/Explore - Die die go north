@@ -1,0 +1,41 @@
+Explore - Die die go north
+0: v-val = 8 or -9 or h-val = +/- 6
+- terminate
+
+1: - Check if North Clear
+	- North
+	- go to 0.
+
+2: check if east is clear
+- turn right
+- move forward4
+- turn left
+- go to 0.
+
+3: check if west is clear
+- turn left
+- move forward
+- turn right
+- go to 0.
+
+- check if south clear
+- turn 180
+- move forward
+- go to 0 and skip 1.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+check if [(17,2) or (19,4)] and [(2,12] or (4,14))] found
+- exit

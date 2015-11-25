@@ -1,0 +1,1313 @@
+!SESSION 2014-09-07 01:37:09.819 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-07 01:47:35.180
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 0 2014-09-07 01:48:34.309
+!MESSAGE Could not auto-share project Multi-Disciplinary Project
+!STACK 1
+org.tigris.subversion.subclipse.core.SVNException: Provided SVN information does not match that on disk for project 'Multi-Disciplinary Project'.
+	at org.tigris.subversion.subclipse.core.resources.SVNWorkspaceRoot.setSharing(SVNWorkspaceRoot.java:206)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.autoconnectSVNProject(SVNTeamProviderType.java:140)
+	at org.tigris.subversion.subclipse.core.SVNTeamProviderType$AutoShareJob.run(SVNTeamProviderType.java:106)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.tigris.subversion.subclipse.core 4 4 2014-09-07 01:48:34.310
+!MESSAGE Provided SVN information does not match that on disk for project 'Multi-Disciplinary Project'.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-07 01:48:35.471
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-07 01:48:35.471
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-07 02:03:36.965
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+!SESSION 2014-09-10 21:18:44.622 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-10 21:20:10.684
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-10 21:20:22.100
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-10 21:20:22.101
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-10 21:20:27.150
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-09-10 21:31:17.351
+!MESSAGE org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-09-10 21:32:35.570
+!MESSAGE org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-09-10 21:33:29.399
+!MESSAGE org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-09-10 21:40:35.696
+!MESSAGE org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+!SESSION 2014-09-10 21:42:30.383 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-10 21:43:33.371
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-10 21:43:40.936
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-10 21:43:40.937
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-09-10 21:49:18.934
+!MESSAGE org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-09-10 21:53:42.102
+!MESSAGE org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-10 21:54:09.974
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-09-10 22:00:32.885
+!MESSAGE org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.eclipse.jface 2 0 2014-09-10 22:07:18.736
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-09-10 22:07:18.736
+!MESSAGE A conflict occurred for ALT+ARROW_DOWN:
+Binding(ALT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.moveLineDown,Move Lines Down,
+		Moves the selected lines down,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@b6c562,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(ALT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.goToNextUnread,Go To Next Unread Task,
+		,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@c34121,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.mylyn.tasks.ui.views.tasks,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-09-10 22:07:18.736
+!MESSAGE A conflict occurred for ALT+SHIFT+ARROW_UP:
+Binding(ALT+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.select.enclosing,Select Enclosing Element,
+		Expand selection to include enclosing element,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@158a966,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(ALT+SHIFT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.markTaskReadGoToPreviousUnread,Mark Task Read and Go To Previous Unread Task,
+		,
+		Category(org.eclipse.mylyn.tasks.ui.commands,Task Repositories,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1d97383,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.mylyn.tasks.ui.views.tasks,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-09-10 22:07:18.736
+!MESSAGE A conflict occurred for INSERT:
+Binding(INSERT,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.toggleOverwrite,Toggle Overwrite,
+		Toggle overwrite mode,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@12ebd2e,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(INSERT,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.new.local.task,New Local Task,
+		,
+		Category(org.eclipse.mylyn.tasks.ui.commands,Task Repositories,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1861ecb,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.mylyn.tasks.ui.views.tasks,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-09-10 22:07:18.736
+!MESSAGE A conflict occurred for ALT+SHIFT+U:
+Binding(ALT+SHIFT+U,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.remove.occurrence.annotations,Remove Occurrence Annotations,
+		Removes the occurrence annotations from the current editor,
+		Category(org.eclipse.jdt.ui.category.source,Source,Java Source Actions,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@4fc515,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(ALT+SHIFT+U,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.markTaskUnread,Mark Task Unread,
+		,
+		Category(org.eclipse.mylyn.tasks.ui.commands,Task Repositories,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1141b33,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.mylyn.tasks.ui.views.tasks,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-09-10 22:07:18.736
+!MESSAGE A conflict occurred for ALT+ARROW_UP:
+Binding(ALT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.ui.edit.text.moveLineUp,Move Lines Up,
+		Moves the selected lines up,
+		Category(org.eclipse.ui.category.textEditor,Text Editing,Text Editing Commands,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@105d8cd,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.textEditorScope,,,system)
+Binding(ALT+ARROW_UP,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.goToPreviousUnread,Go To Previous Unread Task,
+		,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1465303,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.mylyn.tasks.ui.views.tasks,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2014-09-10 22:07:18.736
+!MESSAGE A conflict occurred for ALT+SHIFT+ARROW_DOWN:
+Binding(ALT+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.edit.text.java.select.last,Restore Last Selection,
+		Restore last selection,
+		Category(org.eclipse.ui.category.edit,Edit,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@dcad85,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.jdt.ui.javaEditorScope,,,system)
+Binding(ALT+SHIFT+ARROW_DOWN,
+	ParameterizedCommand(Command(org.eclipse.mylyn.tasks.ui.command.markTaskReadGoToNextUnread,Mark Task Read and Go To Next Unread Task,
+		,
+		Category(org.eclipse.mylyn.tasks.ui.commands,Task Repositories,null,true),
+		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@40176,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.mylyn.tasks.ui.views.tasks,,,system)
+!SESSION 2014-09-11 01:18:57.615 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-11 01:19:25.636
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-11 01:19:34.493
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-11 01:19:34.494
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-11 01:19:37.887
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+!SESSION 2014-09-11 21:19:13.037 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-11 21:19:53.971
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-11 21:20:01.677
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-11 21:20:01.677
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-11 21:20:02.364
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+!SESSION 2014-09-12 14:19:29.501 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-12 14:19:53.987
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-12 14:20:03.024
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-12 14:20:03.025
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-12 14:27:17.605
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-09-12 20:17:21.126
+!MESSAGE org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-09-12 20:18:14.224
+!MESSAGE org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+!SESSION 2014-09-12 23:26:21.005 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-12 23:26:51.186
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-12 23:26:57.633
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-12 23:26:57.634
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2014-09-12 23:31:56.547 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-12 23:32:22.930
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-12 23:32:33.071
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-12 23:32:33.071
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2014-09-14 11:49:46.330 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-14 11:50:20.623
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-14 11:50:32.812
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-14 11:50:32.813
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-14 11:50:36.285
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+!SESSION 2014-09-14 23:55:41.915 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-14 23:56:05.556
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-14 23:56:12.477
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-14 23:56:12.478
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.ui 4 0 2014-09-15 00:00:42.163
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.swt.widgets.Widget.sendMouseEvent(Widget.java:1114)
+	at org.eclipse.swt.widgets.Widget.wmMouseMove(Widget.java:2212)
+	at org.eclipse.swt.widgets.Control.WM_MOUSEMOVE(Control.java:5115)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4658)
+	at org.eclipse.swt.widgets.Table.windowProc(Table.java:5919)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:4990)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2549)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3757)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1113)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:997)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:138)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:610)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:567)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:354)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:181)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-15 00:06:45.919
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+!SESSION 2014-09-15 21:52:29.577 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-15 21:52:58.484
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-15 21:53:04.989
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-15 21:53:04.989
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-15 22:17:14.121
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+!SESSION 2014-09-16 02:26:24.218 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-16 02:26:41.725
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-16 02:26:50.169
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-16 02:26:50.170
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2014-09-18 11:01:42.415 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-18 11:02:04.793
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-18 11:02:12.079
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-18 11:02:12.080
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2014-09-25 21:15:54.901 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-25 21:16:24.388
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-25 21:16:32.320
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-25 21:16:32.321
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-25 21:44:55.929
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-25 21:44:55.933
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+!SESSION 2014-09-28 19:24:44.615 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-09-28 19:32:39.593
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-28 19:32:45.705
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-09-28 19:32:45.706
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.net 4 0 2014-09-28 19:32:47.918
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+!SESSION 2014-10-01 19:01:44.618 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-10-01 19:02:02.029
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-10-01 19:02:12.681
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-10-01 19:02:12.682
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.core.net 4 0 2014-10-01 19:13:46.370
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.eclipse.core.net 4 0 2014-10-01 19:13:46.376
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.eclipse.core.net 4 0 2014-10-01 19:13:46.381
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-10-04 01:11:22.936
+!MESSAGE org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'simulator\Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'simulator\Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'simulator\Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+!SESSION 2014-10-04 14:02:37.674 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2014-10-04 14:02:48.323
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-10-04 14:03:08.742
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-10-04 14:03:17.430
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-10-04 14:03:17.431
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-10-04 14:05:15.922
+!MESSAGE org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'simulator\Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'simulator\Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: Merge conflict during commit
+svn: Commit failed (details follow):
+svn: File 'simulator\Maze.java' is out of date; try updating
+svn: resource out of date; try updating
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-10-04 14:07:07.984
+!MESSAGE org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-10-04 14:07:19.220
+!MESSAGE org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-10-04 14:07:47.214
+!MESSAGE org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-10-04 14:08:25.428
+!MESSAGE org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-10-04 14:10:02.099
+!MESSAGE org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-10-04 14:10:34.445
+!MESSAGE org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-10-04 14:14:07.201
+!MESSAGE org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.tigris.subversion.subclipse.core 4 -6 2014-10-04 14:15:17.926
+!MESSAGE org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+!STACK 0
+org.tigris.subversion.svnclientadapter.SVNClientException: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:347)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand$1.run(CheckinResourcesCommand.java:146)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin$6.run(SVNProviderPlugin.java:535)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.tigris.subversion.subclipse.core.SVNProviderPlugin.run(SVNProviderPlugin.java:530)
+	at org.tigris.subversion.subclipse.core.commands.CheckinResourcesCommand.run(CheckinResourcesCommand.java:121)
+	at org.tigris.subversion.subclipse.core.SVNTeamProvider.checkin(SVNTeamProvider.java:139)
+	at org.tigris.subversion.subclipse.ui.operations.CommitOperation.execute(CommitOperation.java:112)
+	at org.tigris.subversion.subclipse.ui.operations.SVNOperation.run(SVNOperation.java:90)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext.run(JobRunnableContext.java:144)
+	at org.eclipse.team.internal.ui.actions.JobRunnableContext$ResourceJob.runInWorkspace(JobRunnableContext.java:72)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: org.apache.subversion.javahl.ClientException: A conflict in the working copy obstructs the current operation
+svn: Commit failed (details follow):
+svn: Aborting commit: 'C:\Users\Admin\Desktop\MDP SHARED\MDP_Algorithm\src\mdp\algorithm\simulator\Maze.java' remains in conflict
+
+	at org.apache.subversion.javahl.SVNClient.commit(Native Method)
+	at org.tigris.subversion.svnclientadapter.javahl.AbstractJhlClientAdapter.commit(AbstractJhlClientAdapter.java:339)
+	... 12 more
+
+!ENTRY org.eclipse.core.net 4 0 2014-10-04 14:55:00.459
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.eclipse.core.net 4 0 2014-10-04 14:55:00.463
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.eclipse.core.net 4 0 2014-10-04 14:55:00.469
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.eclipse.core.net 4 0 2014-10-04 14:55:00.474
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.eclipse.core.net 4 0 2014-10-04 14:55:00.479
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+
+!ENTRY org.eclipse.core.net 4 0 2014-10-04 14:55:00.484
+!MESSAGE WinHttp.GetProxyForUrl for pac failed with error 'The proxy auto-configuration script could not be downloaded
+' #12167.
+!SESSION 2014-10-04 21:16:10.902 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_55
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.standard.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.standard.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2014-10-04 21:16:35.526
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-10-04 21:16:42.259
+!MESSAGE Warning: EGit couldn't detect the installation path "gitPrefix" of native Git. Hence EGit can't respect system level
+Git settings which might be configured in ${gitPrefix}/etc/gitconfig under the native Git installation directory.
+The most important of these settings is core.autocrlf. Git for Windows by default sets this parameter to true in
+this system level configuration. The Git installation location can be configured on the
+Team > Git > Configuration preference page's 'System Settings' tab.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.egit.ui 2 0 2014-10-04 21:16:42.260
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Admin'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.

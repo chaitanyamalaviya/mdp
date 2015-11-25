@@ -1,0 +1,21 @@
+Sensor 0
+
+10 cm === >450 (better accuracy at >450)
+7.5 cm === >300
+
+Sensor 2
+
+10 cm === >420
+7.5 cm === >300
+
+
+Sensor 3
+
+10 cm === >500
+7.5 cm === >630
+
+
+Sensor 1
+
+10 cm === >480
+7.5 cm === >620

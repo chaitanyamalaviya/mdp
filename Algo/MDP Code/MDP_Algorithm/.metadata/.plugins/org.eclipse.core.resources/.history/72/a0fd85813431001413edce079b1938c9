@@ -1,0 +1,44 @@
+package mdp_Algorithm_Simulator;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+
+import javax.swing.JFrame;
+
+public class Simulator {
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		frame.setTitle("Maze Simulator");
+		frame.setSize(510, 660);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		
+		final Maze mazeMap = new Maze();
+		
+		Container contentPane = frame.getContentPane();
+		contentPane.add(mazeMap, BorderLayout.CENTER);
+		
+		JPanel buttonPanel = new JPanel();
+		JButton startButton = new JButton("Solve");
+		startButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				// Create a thread to animation the solution of the maze
+				Exploration1 solver = new Exploration1(componentsPanel);
+				//RealExploration solver = new RealExploration(componentsPanel);
+				solvingThread = new Thread(solver);
+				solvingThread.start();
+				//solvingThread.stop();
+				JFrame g = new JFrame();
+				g.setSize(new Dimension(500, 400));
+				g.setLocation(1000, 100);
+				Container contentPane1 = g.getContentPane();
+			
+			}
+			
+		});
+		buttonPanel.add(startButton);
+		
+		frame.setVisible(true);
+	}
+}

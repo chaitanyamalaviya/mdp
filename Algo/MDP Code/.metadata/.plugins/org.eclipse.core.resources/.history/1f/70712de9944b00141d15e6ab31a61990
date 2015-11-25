@@ -1,0 +1,214 @@
+package mdp.algorithm.explore.P;
+
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Stack;
+
+import javax.swing.JLabel;
+import javax.swing.Timer;
+
+import mdp.algorithm.fastestPath.PathSolver;
+import mdp.algorithm.simulator.Maze;
+import mdp.algorithm.simulator.Stopwatch;
+import mdp.algorithm.simulator.TimerQueue;
+
+public class ExplorationSide implements Runnable{
+	
+	private Stopwatch s;
+	private int robotOrientation;
+	private int robotMidPointRow;
+	private int robotMidPointCol;
+	private Maze maze;
+	private Stack<Position> stack;
+	private Position temp;
+	private JLabel exploreTimeValue;
+	private String timeLimit;
+	private String tempStr;
+	private float tempFloat;
+	private float timeLimitFloat;
+	private Timer timer;
+	private int i = 0;
+	private boolean status = false;
+	private boolean backtrack = false;
+	int[][] visited = new int[22][17]; //0 mean not visted, 1 means visted
+	private boolean goal = false;
+	private int percentMap;
+	private int speed;
+	
+	public ExplorationSide(Maze mazeMap, JLabel exploreTimeValue, String timeLimit, int percentMap, float speed){
+		s = new Stopwatch();
+		maze = mazeMap;
+		stack = new Stack<Position>();
+		robotOrientation = maze.getRobotOrientation();
+		robotMidPointRow = maze.getRobotMidPointRow();
+		robotMidPointCol = maze.getRobotMidPointCol();
+		temp = new Position(robotMidPointRow, robotMidPointCol, robotOrientation);
+		stack.push(temp);
+		
+		for(int i=0; i<21; i++){
+			for(int j=0; j<16; j++){
+				visited[i][j] = 0; 
+			}
+		}
+		this.percentMap = percentMap;
+		this.exploreTimeValue = exploreTimeValue;
+		System.out.println("perMap" + percentMap);
+		this.timeLimit = timeLimit;
+		this.speed =(int)(speed*1000);
+	}
+	
+	public void explorePath(){
+		tempStr = timeLimit.substring(0, 1);
+		timeLimitFloat = Integer.parseInt(tempStr);
+		tempStr = timeLimit.substring(2, 4);
+		tempFloat = Float.parseFloat(tempStr) * 1/60;
+		timeLimitFloat = timeLimitFloat + tempFloat;
+		
+		s.startStopwatchTimer(exploreTimeValue, timeLimitFloat);
+		startTimer();
+	}
+
+	private void startTimer(){
+		timer = new Timer(speed, new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				if(stack.isEmpty() || maze.percentageExplored() >= percentMap || exploreTimeValue.getText().equals("0"+timeLimit)){
+					stopExplore();
+					s.stopStopwatchTimer();
+		  			System.out.print("end1");
+		  		}
+				else{
+					if(status){
+						explorePathAction();
+						status = false;
+					}
+					else{
+						setExploreAction();
+						status = true;
+					}
+		    	}
+			}
+		});
+		timer.start();
+	}
+	
+	public void setExploreAction(){
+		maze.esSetExplorationPathAction();
+	}
+	
+	public void explorePathAction(){
+		robotMidPointRow = maze.getRobotMidPointRow();
+		robotMidPointCol = maze.getRobotMidPointCol();
+		visited[robotMidPointRow-1][robotMidPointCol-1] = 1;
+		visited[robotMidPointRow-1][robotMidPointCol] = 1;
+		visited[robotMidPointRow-1][robotMidPointCol+1] = 1;
+		visited[robotMidPointRow][robotMidPointCol-1] = 1;
+		visited[robotMidPointRow][robotMidPointCol] = 1;
+		visited[robotMidPointRow][robotMidPointCol+1] = 1;
+		visited[robotMidPointRow+1][robotMidPointCol-1] = 1;
+		visited[robotMidPointRow+1][robotMidPointCol] = 1;
+		visited[robotMidPointRow+1][robotMidPointCol+1] = 1;
+		
+		if(!goal)
+			goal = checkGoal(robotMidPointRow, robotMidPointCol);
+		
+		switch(maze.getRobotOrientation()){
+		case 0: //North
+			if(maze.esCheckRightClear(visited)){
+				maze.spinRightAction();
+			}
+			else if(maze.checkFrontClear(visited)){
+				maze.moveForwardAction();
+			}
+			else if(maze.esCheckLeftClear(visited)){
+				maze.spinLeftAction();
+			}
+			else{
+				maze.spinRightAction();
+				maze.spinRightAction();
+				maze.moveForwardAction();
+			}
+			break;
+		case 1: // east
+			if(maze.esCheckRightClear(visited)){
+				maze.spinRightAction();				
+			}
+			else if(maze.checkFrontClear(visited)){
+				maze.moveForwardAction();
+			}
+			else if(maze.esCheckLeftClear(visited)){
+				maze.spinLeftAction();
+			}
+			else{
+				maze.spinRightAction();
+				maze.spinRightAction();
+				maze.moveForwardAction();
+			}
+			break;
+		case 2: //south
+			if(maze.esCheckRightClear(visited)){
+				maze.spinRightAction();
+			}
+			else if(maze.checkFrontClear(visited)){
+				maze.moveForwardAction();
+			}
+			else if(maze.esCheckLeftClear(visited)){
+				maze.spinLeftAction();
+			}
+			break;
+		case 3: //west
+			if(maze.checkFrontClear(visited)){
+				maze.moveForwardAction();
+			}
+			else if(maze.esCheckLeftClear(visited)){
+				maze.spinLeftAction();
+			}
+			else if(maze.esCheckRightClear(visited)){
+				maze.spinRightAction();
+			}
+			break;
+		}
+		
+	}
+	
+	private void stopExplore(){
+		Point start = new Point(maze.getRobotMidPointRow(), maze.getRobotMidPointCol());
+        maze.startTimer();
+		if(!goal){
+	        Point goal = new Point(2, 14);
+	        PathSolver ps = new PathSolver();
+			ps.moveRobot(ps.solvePath(start,goal,maze,maze.getRobotOrientation()),start,goal,maze,maze.getRobotOrientation());
+			System.out.println("path1");
+		}
+		System.out.println("path2");
+		Point goal = new Point(19,2);
+        PathSolver ps = new PathSolver();
+		ps.moveRobot(ps.solvePath(start,goal,maze,maze.getRobotOrientation()),start,goal,maze,maze.getRobotOrientation());
+		maze.completePath();
+		timer.stop();
+	}
+	public void stopExploreStopwatchTimer(){
+		s.stopStopwatchTimer();
+		s.resetStopwatchTimer();
+	}
+	
+	public void stopTimer(){
+		timer.stop();
+	}
+	
+	public void clearStack(){
+        stack.clear();
+    }
+	
+	private boolean checkGoal(int midpointRow, int midpointCol){
+		if(midpointRow==2 && midpointCol == 14)
+			return true;
+		return false;
+	}
+	
+	@Override
+    public void run() {
+        // TODO Auto-generated method stub
+		explorePath();
+    }
+}

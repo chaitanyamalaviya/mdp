@@ -1,0 +1,5 @@
+package mdp.algorithm.fastestPath;
+
+public class PathSolver2 {
+
+}

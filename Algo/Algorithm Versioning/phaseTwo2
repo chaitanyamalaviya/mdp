@@ -1,0 +1,99 @@
+private boolean phaseTwo(Point current, Stack<Point> visited) {
+		boolean finish = false;
+		Point tempPoint = new Point();
+		visited.add(current);
+		if (hasPath()) {
+			finish = true;
+			return finish;
+		}
+		
+		if (!isFrontBlocked() && !finish) {
+			moveForward();
+			System.out.println("Robot's Midpoint (" + robotMidPointRow + "," + robotMidPointCol +")");
+			switch (robotOrientation) {
+				case NORTH:	tempPoint.setLocation(current.getX()-1, current.getY());
+						break;
+				case EAST:	tempPoint.setLocation(current.getX(), current.getY()+1);
+						break;
+				case WEST:	tempPoint.setLocation(current.getX(), current.getY()-1);
+						break;
+				case SOUTH: tempPoint.setLocation(current.getX()+1, current.getY());
+						break;
+			}
+			
+			System.out.println("-------------------- Moved Forward");
+			//printVirtualMap();
+			
+			if (!visited.contains(tempPoint) && !isFrontBlocked())
+				finish = phaseTwo(tempPoint, visited);
+		}
+		if (!isRightBlocked() && !finish) {
+			spinRight();
+			if(!isFrontBlocked()) {
+				moveForward();
+				System.out.println("Robot's Midpoint (" + robotMidPointRow + "," + robotMidPointCol +")");
+				switch (robotOrientation) {
+					case NORTH:	tempPoint.setLocation(current.getX()-1, current.getY());
+							break;
+					case EAST:	tempPoint.setLocation(current.getX(), current.getY()+1);
+							break;
+					case WEST:	tempPoint.setLocation(current.getX(), current.getY()-1);
+							break;
+					case SOUTH: tempPoint.setLocation(current.getX()+1, current.getY());
+							break;
+				}
+				if (!visited.contains(tempPoint) && !isFrontBlocked()) {
+					finish = phaseTwo(tempPoint, visited);
+					if(!finish)
+						spinLeft();
+				}
+				System.out.println("-------------------- Moved Right");
+				//printVirtualMap();
+			} else {
+				spinLeft();
+				System.out.println("Right Turn Not Allowed");
+			}
+			
+		}
+		if (!isLeftBlocked() && !finish) {
+			spinLeft();
+			if(!isFrontBlocked()) {
+				moveForward();
+				System.out.println("Robot's Midpoint (" + robotMidPointRow + "," + robotMidPointCol +")");
+				switch (robotOrientation) {
+					case NORTH:	tempPoint.setLocation(current.getX()-1, current.getY());
+							break;
+					case EAST:	tempPoint.setLocation(current.getX(), current.getY()+1);
+							break;
+					case WEST:	tempPoint.setLocation(current.getX(), current.getY()-1);
+							break;
+					case SOUTH: tempPoint.setLocation(current.getX()+1, current.getY());
+							break;
+				}
+				
+				if (!visited.contains(tempPoint) && !isFrontBlocked())   
+					finish = phaseTwo(tempPoint, visited);
+				if(!finish)
+					spinRight();
+				
+				System.out.println("-------------------- Moved Left");
+				//printVirtualMap();
+			} else {
+				spinRight();
+			}
+			
+		}
+		if (!finish) {
+			spinRight();
+			spinRight();
+			moveForward();
+			spinRight();
+			spinRight();
+			System.out.println("Robot's Midpoint (" + robotMidPointRow + "," + robotMidPointCol +")");
+			System.out.println("-------------------- BACK");
+			//printVirtualMap();
+		}
+		
+		visited.pop();
+		return finish;
+	}

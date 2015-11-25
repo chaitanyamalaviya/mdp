@@ -1,0 +1,31 @@
+Setup Subclipse versioning
+Detailed Instruction: http://subclipse.tigris.org/servlets/ProjectProcess?pageID=p4wYuA
+
+1. Go to HELP>Install New Software
+
+2. Add the follow link to install (if prompted for name, can use Subclipse or which ever name comfortable)
+
+3. Select ALL the packages
+
+4. Accept the license
+
+5. Install.
+
+6. Restart Eclipse
+
+End of Set up.
+
+--------
+To checkout the project:
+
+1. Go to code.google.com
+2. Login
+3. Select My Favourites on top right corner select the project.
+4. Go to SOURCE, copy the link
+5. Go to Eclipse and create a new project.
+6. Select File > Import > SVN > SVN Repositories
+7. When asked, selecte Create New Link
+8. Paste the link you copy.
+9. When asked for username and password, go back to google and generate a password (below the link you copy)
+10. User Name is your google id, password is the password you generated. Remember to save the password.
+11. The End.

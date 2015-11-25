@@ -1,0 +1,552 @@
+package mdp.algorithm.simulator;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTextField;
+import javax.swing.Timer;
+
+import mdp.algorithm.explore.P.*;
+import mdp.algorithm.fastestPath.PathSolver;
+import mdp.rpi.communicator.*;
+
+public class Simulator {
+	private static final Maze mazeMap = new Maze();
+	
+	private static final Color DEFAULT = new Color(198,217,241);
+	private static final Color OBSTACLES = new Color(64,64,64);
+	private static final Color GOALSTART = Color.WHITE;
+	
+	private static final Color RIGHTBACKGROUND = Color.WHITE;
+	
+	private static final Color EXPLORED = new Color(255,255,102);
+	private static final Color ROBOT = new Color(146,208,80);
+	
+	private static Stopwatch stopwatch = new Stopwatch();
+	private static JLabel exploreTimeValue = new JLabel("00:00");
+	private static JLabel fpTimeValue = new JLabel("00:00");
+	
+	private static JLabel explorePercentExploredValue = new JLabel("0%");
+	private static JLabel explorePercentObstaclesValue = new JLabel("0%");
+	
+	private static final int GOALROW = 2;
+	private static final int GOALCOL = 14;
+	private static final int STARTROW = 19;
+	private static final int STARTCOL = 2;
+
+	private static boolean fastestPathStatus = false; 
+	private static boolean explorationStatus = false; 
+	
+	private static boolean md1 = false;
+	private static boolean md1Once = false;
+	private static boolean md2 = false;
+	private static boolean md2Once = false;
+	
+	private static Timer mdTimer;
+	
+	private static Timer dataTimer;
+	
+	private static Exploration exploration;
+
+	private static JTextField percentMazetxt = new JTextField("");
+	private static JTextField timeLimittxt = new JTextField("");
+	private static JTextField speedtxt = new JTextField("");
+	
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		frame.setTitle("Maze Simulator");
+		frame.setSize(660, 660);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		
+		Container contentPane = frame.getContentPane();
+		contentPane.add(mazeMap, BorderLayout.CENTER);
+		
+		//Start of bottom buttons
+		JPanel buttonPanel = new JPanel();
+		//buttonPanel.setLayout(new GridLayout(1, 4, 5, 1));
+		JButton mapDescriptor1 = new JButton("MD1");
+		JButton mapDescriptor2 = new JButton("MD2");
+        JButton solvePathbtn = new JButton("Solve Path");
+        JButton terminatebtn = new JButton("Terminate");
+        JButton explorationbtn = new JButton("Exploration");
+        JButton loadMapbtn = new JButton("Load Map");
+        JButton realTimebtn = new JButton("Real Timer");
+        
+        mapDescriptor1.addActionListener(new ActionListener() {
+          	 
+            public void actionPerformed(ActionEvent e)
+            {
+                if(md1){
+                	System.out.println("Stop Map Descriptor 1");
+                	md1 = false;
+                	mdStop();
+                }
+                else if(md1Once){
+                	mazeMap.removeMapDescriptorOnMaze();
+                	md1Once = false;
+                }
+                else{
+                	System.out.println("Start Map Descriptor 1");
+                	if(md2){
+                		md2 = false;
+                		mdStop();
+                	}
+                	if(md2Once){
+                		md2Once=false;
+                		mazeMap.removeMapDescriptorOnMaze();
+                	}
+                	if(explorationStatus || fastestPathStatus){
+                		md1 = true;
+                		md1Start();
+                	}
+                	else{
+                		md1Once = true;
+                		mazeMap.printMapDescriptor1OnMaze();
+        		    	mazeMap.printMapDescriptor1();
+                	}
+                		
+                }
+            }
+        });
+        
+        mapDescriptor2.addActionListener(new ActionListener() {
+          	 
+            public void actionPerformed(ActionEvent e)
+            {
+                if(md2){
+                	System.out.println("Stop Map Descriptor 2");
+                	md2 = false;
+                	mdStop();
+                }
+                else if(md2Once){
+                	mazeMap.removeMapDescriptorOnMaze();
+                	md2Once = false;
+                }
+                else{
+                	System.out.println("Start Map Descriptor 2");
+                	if(md1){
+                		md1 = false;
+                		mdStop();
+                	}
+                	if(md1Once){
+                		md1Once=false;
+                		mazeMap.removeMapDescriptorOnMaze();
+                	}
+                	if(explorationStatus || fastestPathStatus){
+                		md2Start();
+                		md2 = true;
+                	}
+                	else{
+                		md2Once = true;
+                		mazeMap.printMapDescriptor2OnMaze();
+        		    	mazeMap.printMapDescriptor2();
+                	}
+                }
+            }
+        });
+
+        explorationbtn.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+            	
+            	//Start of Do not remove the code
+                System.out.println("Explore");
+                resetBeforeStart(0);
+                explorationStatus = true; 
+                dataTimerStart();
+                //End of Do not remove the code
+                
+                String temp = "";
+                String tempTime = "";
+                int perMap;
+                String timeLimit;
+                temp = percentMazetxt.getText();
+                if(!temp.equals(""))
+                	perMap = Integer.parseInt(temp);
+                else
+                	perMap = 100;
+                
+                tempTime = timeLimittxt.getText();
+                if(!tempTime.equals(""))
+                	timeLimit = tempTime;
+                else
+                	timeLimit = "6:00";
+                
+                String tempSpeed = speedtxt.getText();
+                float speed;
+                if(!tempSpeed.equals(""))
+                	speed = Float.parseFloat(tempSpeed);
+                else
+                	speed = (float)0.2;
+
+                mazeMap.setRobotMidPoint(10, 8);
+                mazeMap.setRobotOrientation(0);
+        		exploration = new Exploration(mazeMap, exploreTimeValue, timeLimit, perMap, speed);
+                ExplorationSide es = new ExplorationSide(mazeMap, exploreTimeValue, timeLimit, perMap, speed);
+                exploration.run();
+            }
+        });  
+        
+        solvePathbtn.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+            	
+            	//Start of Do not remove the code
+            	System.out.println("Solve Path");
+                resetBeforeStart(1);
+            	fastestPathStatus = true; 
+            	stopwatch.startStopwatchTimer(fpTimeValue, 2);
+            	mazeMap.startTimer();
+                //End of Do not remove the code
+            	
+                mazeMap.setRobotMidPoint(STARTROW, STARTCOL);
+                mazeMap.setRobotOrientation(0);
+                Point start = new Point(STARTROW, STARTCOL);
+                Point goal = new Point(GOALROW, GOALCOL);
+                PathSolver ps = new PathSolver();
+
+        		ps.moveRobot(ps.solvePath(start,goal,mazeMap,mazeMap.getRobotOrientation()),start,goal,mazeMap,mazeMap.getRobotOrientation());
+        		mazeMap.completePath();
+            }
+        });  
+        
+        terminatebtn.addActionListener(new ActionListener() {
+          	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Terminate all timer");
+                terminateAndReset();
+            }
+        });  
+        
+        loadMapbtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e)
+            {
+        		System.out.println("Choose File");
+        		FileChooser fc = new FileChooser();
+        		fc.createAndShowGUI();
+            }
+        });  
+        
+        realTimebtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e)
+            {
+        		System.out.println("Real Time Connection");
+        		RaspberryController rpi = new RaspberryController();
+            }
+        });  
+        
+        
+        buttonPanel.add(loadMapbtn);
+        buttonPanel.add(mapDescriptor1);
+        buttonPanel.add(mapDescriptor2);
+        buttonPanel.add(solvePathbtn);
+        buttonPanel.add(terminatebtn);
+        buttonPanel.add(explorationbtn);
+        buttonPanel.add(realTimebtn);
+		contentPane.add(buttonPanel, BorderLayout.SOUTH);
+		//End of bottom buttons
+		
+		//Start of right panel
+		JPanel rightPanel = new JPanel();
+		rightPanel.setLayout(new GridLayout(3, 1, 1, 10));
+		rightPanel.setBackground(RIGHTBACKGROUND);
+		//rightPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY, 1, true));
+		
+		JPanel legendPanel = new JPanel();
+		legendPanel.setLayout(new GridLayout(5, 2, 3, 5));
+		legendPanel.setBackground(Color.WHITE);
+		JLabel title = new JLabel("LEGEND");
+		title.setFont(title.getFont().deriveFont(14.0F));
+		
+		JPanel defaultColorRect = new JPanel();
+		JPanel exploredColorRect = new JPanel();
+		JPanel obstaclesColorRect = new JPanel();
+		JPanel robotColorRect = new JPanel();
+		
+		JLabel defaultLabel = new JLabel("Default");
+		JLabel exploredLabel = new JLabel("Explored");
+		JLabel obstaclesLabel = new JLabel("Obstacles");
+		JLabel robotLabel = new JLabel("Robot");
+		
+		defaultColorRect.setBackground(DEFAULT);
+		exploredColorRect.setBackground(EXPLORED);
+		obstaclesColorRect.setBackground(OBSTACLES);
+		robotColorRect.setBackground(ROBOT);
+		
+		legendPanel.add(title);
+		legendPanel.add(new JLabel(" "));
+		legendPanel.add(defaultColorRect);
+		legendPanel.add(defaultLabel);
+		legendPanel.add(exploredColorRect);
+		legendPanel.add(exploredLabel);
+		legendPanel.add(obstaclesColorRect);
+		legendPanel.add(obstaclesLabel);
+		legendPanel.add(robotColorRect);
+		legendPanel.add(robotLabel);
+		
+		JPanel exploreValuePanel = new JPanel();
+		exploreValuePanel.setLayout(new GridLayout(6, 2, 1, 1));
+		exploreValuePanel.setBackground(RIGHTBACKGROUND);
+
+		JLabel exploreTitle = new JLabel("EXPLORATION");
+		exploreTitle.setFont(exploreTitle.getFont().deriveFont(14.0F));
+		JLabel exploreTimelbl = new JLabel("Time: ");
+		JLabel explorePercentExploredlbl = new JLabel("% Map: ");
+		JLabel explorePercentObstacleslbl = new JLabel("% Obstacles: ");
+		JLabel blanklbl = new JLabel(" ");
+		
+		exploreValuePanel.add(exploreTitle);
+		exploreValuePanel.add(blanklbl);
+		exploreValuePanel.add(exploreTimelbl);
+		exploreValuePanel.add(exploreTimeValue);
+		exploreValuePanel.add(explorePercentExploredlbl);
+		exploreValuePanel.add(explorePercentExploredValue);
+		exploreValuePanel.add(explorePercentObstacleslbl);
+		exploreValuePanel.add(explorePercentObstaclesValue);
+		
+		JLabel fpTitle = new JLabel("FASTEST PATH");
+		fpTitle.setFont(exploreTitle.getFont().deriveFont(14.0F));
+		JLabel fpTimelbl = new JLabel("Time: ");
+		JLabel blanklbl1 = new JLabel(" ");
+		
+		exploreValuePanel.add(fpTitle);
+		exploreValuePanel.add(blanklbl1);
+		exploreValuePanel.add(fpTimelbl);
+		exploreValuePanel.add(fpTimeValue);
+		
+		JPanel setExploreValuePanel = new JPanel();
+		setExploreValuePanel.setLayout(new GridLayout(8, 1, 1, 1));
+		
+		JLabel setExploreValueTitle = new JLabel("SET EXPLORE VALUE");
+		setExploreValueTitle.setFont(setExploreValueTitle.getFont().deriveFont(14.0F));
+		JLabel speedlbl = new JLabel("Speed in sec");
+		JLabel percentMazelbl = new JLabel("% Maze");
+		JLabel timeLimitlbl = new JLabel("Time Limit (eg.0:20)");
+		
+		//percentObstaclestxt.setMaximumSize(new Dimension(1000, 500));
+		
+		setExploreValuePanel.add(setExploreValueTitle);
+		setExploreValuePanel.add(percentMazelbl);
+		setExploreValuePanel.add(percentMazetxt);
+		setExploreValuePanel.add(timeLimitlbl);
+		setExploreValuePanel.add(timeLimittxt);
+
+		setExploreValuePanel.add(speedlbl);
+		setExploreValuePanel.add(speedtxt);
+		
+		
+		rightPanel.add(legendPanel);
+		rightPanel.add(exploreValuePanel);
+		rightPanel.add(setExploreValuePanel);
+		contentPane.add(rightPanel, BorderLayout.EAST);
+		//End of right panel
+		
+		frame.setVisible(true);
+	}
+	
+	private static void dataTimerStart(){
+		final DecimalFormat df = new DecimalFormat();
+		df.setMaximumFractionDigits(2);
+		dataTimer = new Timer(mazeMap.actionTimerValue(), new ActionListener() {
+		      public void actionPerformed(ActionEvent evt) {
+		    	  explorePercentExploredValue.setText(df.format(mazeMap.percentageExplored()) + "%");
+			}
+		});
+		dataTimer.start(); 
+	}
+	
+	private static void dataTimerStop(){
+		if(dataTimer.isRunning())
+			dataTimer.stop(); 
+		else
+			System.out.println("No data Timer");
+	}
+	
+	private static void md1Start(){
+		md1 = true;
+    	mdTimer = new Timer(mazeMap.actionTimerValue(), new ActionListener() {
+		      public void actionPerformed(ActionEvent evt) {
+		    	mazeMap.printMapDescriptor1OnMaze();
+		    	mazeMap.printMapDescriptor1();
+		      }
+    	});
+    	mdTimer.start(); 
+	}
+	
+	private static void md2Start(){
+		md2 = true;
+    	mdTimer = new Timer(mazeMap.actionTimerValue(), new ActionListener() {
+		      public void actionPerformed(ActionEvent evt) {
+		    	mazeMap.printMapDescriptor2OnMaze();
+		    	mazeMap.printMapDescriptor2();
+		      }
+    	});
+    	mdTimer.start(); 
+	}
+	
+	private static void mdStop(){
+    	mazeMap.removeMapDescriptorOnMaze();
+    	mdTimer.stop(); 
+	}
+	
+	public static void stopAllTimerInSim(){
+		if(explorationStatus){
+            dataTimerStop();
+            exploration.stopTimer();
+            exploration.stopExploreStopwatchTimer();
+			exploration.clearStack();
+		}
+		else{
+			stopwatch.stopStopwatchTimer();
+			mazeMap.stopTimer();
+		}
+        if(md1 || md2){
+        	mdTimer.stop();
+        	md1 = false;
+        	md2 = false;
+        }
+        if(fastestPathStatus)
+        	fastestPathStatus=false;
+        if(explorationStatus)
+        	explorationStatus=false;
+	}
+	
+	//0 as explore
+	//1 as fp
+	private static void resetBeforeStart(int caller){
+		mazeMap.resetExplorationMap();
+        if(explorationStatus || fastestPathStatus){
+        	if(caller == 0 && explorationStatus){
+                exploreTimeValue.setText("00:00");
+                explorePercentExploredValue.setText("0%");
+            	explorePercentObstaclesValue.setText("0%");
+            }
+        	else if(caller == 1 && fastestPathStatus)
+        		fpTimeValue.setText("00:00");
+        	
+        	if(fastestPathStatus){
+                stopwatch.resetStopwatchTimer();
+        	}
+        	
+        	stopAllTimerInSim();
+        	explorationStatus = false; 
+        	fastestPathStatus = false; 
+        	mazeMap.removeMapDescriptorOnMaze();
+        }
+        if(md1 || md2){
+        	md1 = false;
+        	md2 = false;
+        	mdStop();
+        }
+        else if(md2Once || md1Once){
+        	mazeMap.removeMapDescriptorOnMaze();
+        	md2Once = false;
+        	md1Once = false;
+        }
+	}
+	
+	public static void terminateAndReset(){
+		mazeMap.resetMap();
+        if(explorationStatus || fastestPathStatus){
+        	if(explorationStatus){
+                dataTimerStop();
+            }
+        	explorationStatus = false; 
+        	fastestPathStatus = false; 
+        	stopAllTimerInSim();
+            stopwatch.resetStopwatchTimer();
+            exploreTimeValue.setText("00:00");
+            fpTimeValue.setText("00:00");
+            explorePercentExploredValue.setText("0%");
+        	explorePercentObstaclesValue.setText("0%");
+            mazeMap.removeMapDescriptorOnMaze();
+        }
+        
+    	mazeMap.removeMapDescriptorOnMaze();
+    	md2Once = false;
+    	md1Once = false;
+	}
+	
+	public static void loadMapPlotObstacles(String fileContents){
+		int length = 0;
+		String temp;
+		String row ="";
+		String col ="";
+		String midPointRow ="";
+		String midPointCol ="";
+		String orientation ="";
+		while(length < fileContents.length()){
+			temp = fileContents.substring(length, length+1);
+			if(new String("[").equals(temp)){
+				length++;
+				temp = fileContents.substring(length, length+1);
+				while(!new String(",").equals(temp)){
+					midPointRow += temp;
+					length++;
+					temp = fileContents.substring(length, length+1);
+				}
+				length++;
+				temp = fileContents.substring(length, length+1);
+				while(!new String(",").equals(temp)){
+					midPointCol += temp;
+					length++;
+					temp = fileContents.substring(length, length+1);
+				}
+				length++;
+				temp = fileContents.substring(length, length+1);
+				orientation = temp;
+				length += 2;
+				mazeMap.setRobotMidPoint(Integer.parseInt(midPointRow), Integer.parseInt(midPointCol));
+				mazeMap.setRobotOrientation(Integer.parseInt(orientation));
+				temp = fileContents.substring(length, length+1);
+			}
+			if(new String("(").equals(temp)){
+				length++;
+				temp = fileContents.substring(length, length+1);
+				while(!new String(",").equals(temp)){
+					row += temp;
+					length++;
+					temp = fileContents.substring(length, length+1);
+				}
+				length++;
+				temp = fileContents.substring(length, length+1);
+				while(!new String(")").equals(temp)){
+					col += temp;
+					length++;
+					temp = fileContents.substring(length, length+1);
+				}
+				System.out.println(row + "," + col);
+				
+				mazeMap.setObstacles(Integer.parseInt(row), Integer.parseInt(col));
+				row = "";
+				col = "";
+			}
+			length++;
+		}
+	}
+}
+

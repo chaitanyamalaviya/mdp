@@ -1,0 +1,60 @@
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class GUI extends JFrame {
+
+JFrame myFrame = new JFrame();
+
+    public GUI(){
+
+        super("Grid");
+        setSize(1000,400);
+        setResizable(false);
+        setLayout(new GridLayout(12,25));
+        JLabel[][] myPanels = new JLabel[12][25];
+
+        for (int x = 0;x<12;x++){
+        	for (int y = 0;y<25;y++){
+	            myPanels[x][y]=new JLabel("");
+	            myPanels[x][y].setOpaque(true);
+	            myPanels[x][y].setBackground(Color.BLUE);
+	            myPanels[x][y].setBorder(BorderFactory.createLineBorder(Color.black));
+	            myPanels[x][y].addMouseListener(new MouseAdapter() {
+	               	@Override
+		           	public void mouseClicked(MouseEvent e) {
+		                 JLabel clickedPanel = (JLabel) e.getSource();
+		                 clickedPanel.setBackground(Color.red);
+		             }
+	             }); // <-- add same listener to each grid
+	        }
+        }
+//Add all the squares (JLabels)
+        for (int x = 0;x<12;x++){
+        	for (int y = 0;y<25;y++){
+        		add(myPanels[x]);
+        	}
+        }
+    }
+
+
+
+    public static void main(String[] args) {
+        
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	GUI ex = new GUI();
+                ex.setVisible(true);
+            }
+        });
+    }
+
+}

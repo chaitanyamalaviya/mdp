@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="http://schemas.android.com/apk/res/android">
+
+    <string name="app_name">BatMobot</string>
+    <string name="group_str">MDP Group 2</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_bluetooth">Bluetooth</string>
+    <string name="status_str">Status...</string>
+    <string name="manual_str">Manual</string>
+    <string name="update_str">Update</string>
+    <string name="auto_str">Auto</string>
+
+    <string name="f1_str">Set F1: </string>
+    <string name="f2_str">Set F2: </string>
+    <string name="hintCmd_str">Type a Command</string>
+    <string name="save_str">Save</string>
+
+    <string name="phoneMotionCtrl">Enable Phone Motion Control</string>
+
+    <string name="cancel_str">Cancel</string>
+    <string name="str_none"></string>
+
+    <string name="explore_str">Explore</string>
+    <string name="startSP_str">Shortest Path</string>
+
+    <!-- Bluetooth Connection Status -->
+    <string name="not_connected">You are not connected to a device</string>
+    <string name="bt_not_enabled_leaving">Bluetooth was not enabled. Leaving Bluetooth Chat.</string>
+    <string name="title_connecting">connecting...</string>
+    <string name="title_connected_to">connected: </string>
+    <string name="title_not_connected">not connected</string>
+
+    <!-- DeviceListActivity -->
+    <string name="scanning">scanning for devices...</string>
+    <string name="select_device">select a device to connect</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for devices</string>
+
+    <!-- Options Menu -->
+    <string name="connect">Connect a device</string>
+    <string name="discoverable">Make discoverable</string>
+    <string name="title_activity_settings">Settings F1 and F2</string>
+
+
+</resources>

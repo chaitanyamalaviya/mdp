@@ -1,0 +1,68 @@
+package mdp.algorithm.simulator;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
+import javax.swing.Timer;
+
+public class Stopwatch{
+	private Timer stopwatchTimer;
+	public static final int ONE_SEC = 1000;
+	
+	private int clockTick = 0;
+	private int clockTimeMin;
+	private int clockTimeSec;
+	private String clockTimeString;
+	private float timeLimit = 6 * 60; // 8min
+	
+	public Stopwatch(){
+	}
+	
+	public void startStopwatchTimer(final JLabel label, float timeLimitMinutes){
+		this.timeLimit = timeLimitMinutes * 60;
+		resetStopwatchTimer();
+		stopwatchTimer = new Timer(ONE_SEC, new ActionListener() {
+		      public void actionPerformed(ActionEvent evt) {
+		    	if(clockTick < timeLimit){
+			    	clockTick++;
+			    	clockTimeMin = clockTick/60;
+			    	clockTimeSec = clockTick%60;
+					clockTimeString = String.format("%02d", clockTimeMin) + ":" + String.format("%02d", clockTimeSec);
+					label.setText(clockTimeString);
+				}
+		    	else
+		    		stopwatchTimer.stop(); 
+			}
+		});
+		stopwatchTimer.start(); 
+	}
+	public void stopStopwatchTimer(){
+		if(stopwatchTimer.isRunning())
+			stopwatchTimer.stop(); 
+		else
+			System.out.println("No stopwatch");
+	
+	}
+	
+	public int getCurrentClockTick() {
+		return clockTick;
+	}
+	
+	public void resetStopwatchTimer(){
+		clockTick = 0;
+	}
+	public void setTimeLimit(int timeLimit){
+		this.timeLimit = timeLimit * 60;
+	}
+	public float getTimeLimit(){
+		return this.timeLimit;
+	}
+	
+	public boolean checkStopwatchRunning(){
+		if(stopwatchTimer.isRunning())
+			return true;
+		else
+			return false;
+	}
+}

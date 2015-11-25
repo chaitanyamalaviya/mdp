@@ -1,0 +1,133 @@
+package mdp_Algorithm_Simulator;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Simulator {
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		frame.setTitle("Maze Simulator");
+		frame.setSize(600, 660);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		
+		final Maze mazeMap = new Maze();
+		
+		Container contentPane = frame.getContentPane();
+		contentPane.add(mazeMap, BorderLayout.CENTER);
+		
+		JPanel buttonPanel = new JPanel();
+		JButton explore = new JButton("Explore");
+        JButton timerExplore = new JButton("Timer Explore");
+        JButton percentExplore = new JButton("% Explore");
+        JButton solve = new JButton("Solve");
+        JButton reset = new JButton("Reset");
+
+        explore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Explore");
+            }
+        });  
+        
+        timerExplore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Timer Explore");
+            }
+        });  
+        
+        percentExplore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("% Explore");
+            }
+        });  
+        
+        solve.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Solve");
+            }
+        });  
+        
+        reset.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Reset");
+            }
+        });  
+        
+        buttonPanel.add(explore);
+        buttonPanel.add(timerExplore);
+        buttonPanel.add(percentExplore);
+        buttonPanel.add(solve);
+        buttonPanel.add(reset);
+		contentPane.add(buttonPanel, BorderLayout.SOUTH);
+		
+		JPanel rightPanel = new JPanel();
+		
+		JPanel legendPanel = new JPanel();
+		legendPanel.setLayout(new GridLayout(5, 2, 3, 3));
+		legendPanel.setBackground(Color.WHITE);
+		legendPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+		JLabel title = new JLabel("LEGEND");
+		
+		JPanel defaultColorRect = new JPanel();
+		JPanel exploredColorRect = new JPanel();
+		JPanel obstaclesColorRect = new JPanel();
+		JPanel robotColorRect = new JPanel();
+		
+		JLabel defaultLabel = new JLabel("Default");
+		JLabel exploredLabel = new JLabel("Explored");
+		JLabel obstaclesLabel = new JLabel("Obstacles");
+		JLabel robotLabel = new JLabel("Robot");
+		
+		defaultColorRect.setBackground(Color.BLACK);
+		defaultColorRect.setPreferredSize(new Dimension(50, 30));
+		defaultColorRect.setMaximumSize(defaultColorRect.getPreferredSize()); 
+
+		exploredColorRect.setBackground(Color.BLACK);
+		obstaclesColorRect.setBackground(Color.BLACK);
+		robotColorRect.setBackground(Color.BLACK);
+		
+		legendPanel.add(title);
+		legendPanel.add(new JLabel(" "));
+		legendPanel.add(defaultColorRect);
+		legendPanel.add(defaultLabel);
+		legendPanel.add(exploredColorRect);
+		legendPanel.add(exploredLabel);
+		legendPanel.add(obstaclesColorRect);
+		legendPanel.add(obstaclesLabel);
+		legendPanel.add(robotColorRect);
+		legendPanel.add(robotLabel);
+		
+		rightPanel.add(legendPanel);
+		contentPane.add(rightPanel, BorderLayout.EAST);
+		
+		frame.setVisible(true);
+	}
+}

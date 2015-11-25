@@ -1,0 +1,113 @@
+package mdp_Algorithm;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Simulator extends JFrame{
+	JFrame frame = new JFrame();
+	
+	public Simulator() {
+		frame.setTitle("Maze Simulator");
+		frame.setSize(1000, 1000);
+		frame.setBackground(Color.WHITE);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE); 
+		//frame.add(new Maze());
+		ButtonUI();
+		LegendUI();
+    }
+
+    private void ButtonUI() {
+        frame.setLayout(new GridLayout(1, 5, 15, 1));
+        JButton explore = new JButton("Explore");
+        JButton timerExplore = new JButton("Timer Explore");
+        JButton percentExplore = new JButton("% Explore");
+        JButton solve = new JButton("Solve");
+        JButton reset = new JButton("Reset");
+        
+        explore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Explore");
+            }
+        });  
+        
+        timerExplore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Timer Explore");
+            }
+        });  
+        
+        percentExplore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("% Explore");
+            }
+        });  
+        
+        solve.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Solve");
+            }
+        });  
+        
+        reset.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Reset");
+            }
+        });  
+        
+        frame.add(explore);
+        frame.add(timerExplore);
+        frame.add(percentExplore);
+        frame.add(solve);
+        frame.add(reset);
+        frame.pack();
+        frame.setVisible(true);
+
+    }
+
+    private void LegendUI(){
+    	JButton legendUI = new JButton("legendUI");
+    	frame.add(legendUI);
+    	frame.pack();
+        frame.setVisible(true);
+    }
+
+	
+    
+    public static void main(String[] args) {
+
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	Simulator simulator = new Simulator();
+            }
+        });
+    }
+}

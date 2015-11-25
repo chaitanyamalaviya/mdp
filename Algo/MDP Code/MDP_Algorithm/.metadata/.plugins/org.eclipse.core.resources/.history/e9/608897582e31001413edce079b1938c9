@@ -1,0 +1,21 @@
+package mdp_Algorithm_Simulator;
+
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
+public class Simulator {
+	public static void main(String[] args) {
+		JFrame f = new JFrame();
+		f.setTitle("Maze Solver");
+		f.setSize(new Dimension(750, 600));
+		
+		final Maze mazeMap = new Maze();
+		
+		Container contentPane = f.getContentPane();
+		contentPane.add(mazeMap, BorderLayout.CENTER);
+		
+	}
+}

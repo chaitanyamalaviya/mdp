@@ -1,0 +1,73 @@
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class QuitButtonExample extends JFrame {
+
+    public QuitButtonExample() {
+
+        initUI();
+    }
+
+    private void initUI() {
+
+        Container pane = getContentPane();
+        GroupLayout gl = new GroupLayout(pane);
+        pane.setLayout(gl);
+
+        JButton quitButton = new JButton("Quit");
+        JButton quitButton2 = new JButton("Quit");
+        JButton quitButton3 = new JButton("Quit");
+        JButton quitButton4 = new JButton("Quit");
+        JButton quitButton5 = new JButton("Quit");
+
+        quitButton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                System.out.print("yes");
+            }
+        });
+        
+        quitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                System.exit(0);
+            }
+        });
+
+        gl.setAutoCreateContainerGaps(true);
+        
+        gl.setHorizontalGroup(gl.createSequentialGroup()
+        		.addComponent(quitButton)
+        		.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+        				.addComponent(quitButton2)
+        );
+
+        gl.setVerticalGroup(gl.createSequentialGroup()
+                .addComponent(quitButton)
+                .addComponent(quitButton2)
+        );
+        
+        pack();
+
+        setTitle("Quit button");
+        setSize(300, 200);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+ /*   public static void main(String[] args) {
+
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                QuitButtonExample ex = new QuitButtonExample();
+                ex.setVisible(true);
+            }
+        });
+    }*/
+}

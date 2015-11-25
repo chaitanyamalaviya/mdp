@@ -1,0 +1,88 @@
+private void explore() {
+		System.out.println("Begin Explore");
+		int leftTurns = 0, rightTurns = 0;
+		boolean backtrack = false;
+		while((hasClearFrontPath() && mapCoveredPercentage() < minimumCoverage /*&& getCurrentMinute() <= maxSearchTime*/ && !hasPath()) || backtrack) {
+			System.out.println(++virtualTimerTick);
+			if (!backtrack) {
+				moveForward();
+				movementMemory.push(FORWARD);
+				
+				if(!hasClearFrontPath() && !hasClearLeftPath() && !hasClearRightPath()) {
+					backtrack = true;
+				}
+				
+				if (!hasClearFrontPath() && hasClearLeftPath()) {
+					if (!(leftTurns >= 4 && isLeftExplored())) {
+						spinLeft();
+						leftTurns++;
+						movementMemory.push(LEFT);
+						continue;
+					}
+				}
+				
+				if ((!hasClearFrontPath() && hasClearRightPath() /*&& !isRightExplored()*/)) {
+					if (!(rightTurns >= 4 && isRightExplored())) {
+						spinRight();
+						rightTurns++;
+						movementMemory.push(RIGHT);
+						continue;
+					} else { 
+						backtrack = true;
+					}
+					
+					//it is stuck! what should it do?
+					
+					if (hasClearLeftPath()) {
+						
+					} else if (hasClearRightPath()){
+						
+					} else {
+						backtrack = true;
+					}
+				}
+			} else {
+			//Perform Backtrack
+				spinRight();
+				spinRight();
+				while (!movementMemory.empty()) {					
+					if (movementMemory.peek().equals(FORWARD)) {
+						moveForward();
+						movementMemory.pop();
+						if (movementMemory.peek().equals(FORWARD)) {
+							if (hasClearLeftPath()) {
+								spinLeft();
+								leftTurns++;
+								movementMemory.push(LEFT);
+								backtrack = false;
+								break;
+							} else if (hasClearRightPath()) {
+								spinRight();
+								rightTurns++;
+								movementMemory.push(RIGHT);
+								backtrack = false;
+								break;
+							}
+						}
+					}
+					
+					if (!movementMemory.empty()) {
+						if (movementMemory.peek().equals(LEFT)) {
+							if (isFrontBlocked() /*|| isFrontExplored()*/) {
+								leftTurns--;
+								spinRight();
+								movementMemory.pop();
+							} else {
+								break;
+							}
+						} else if (movementMemory.peek().equals(RIGHT)) {
+							rightTurns--;
+							spinLeft();
+							movementMemory.pop();
+						}
+					}
+				}
+				backtrack = false;
+			}
+		}
+	}

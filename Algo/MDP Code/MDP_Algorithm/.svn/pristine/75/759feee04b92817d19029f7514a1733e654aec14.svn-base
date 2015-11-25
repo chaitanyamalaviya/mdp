@@ -1,0 +1,62 @@
+package mdp_Algorithm_Simulator;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Maze extends JPanel{
+	private static final int ROWS = 22;
+	private static final int COLUMNS = 17;
+	
+	private static final Color DEFAULT = new Color(198,217,241);
+	private static final Color OBSTACLES = new Color(64,64,64);
+	private static final Color GOALSTART = Color.WHITE;
+	
+	private static final Color EXPLORED = new Color(255,255,102);
+	private static final Color ROBOT = new Color(146,208,80);
+	
+	JPanel[][] grid = new JPanel[ROWS][COLUMNS];
+	JLabel[][] cells = new JLabel[ROWS][COLUMNS];
+	
+	public Maze(){
+		mazeUI();
+	}
+	
+	private void mazeUI(){
+		setSize(510, 660);
+        setLayout(new GridLayout(22, 17, 3, 3));
+    	
+        for (int i = 0;i<ROWS;i++){
+        	for (int j = 0;j<COLUMNS;j++){
+        		JPanel newCell = new JPanel();
+        		for (int x = 0;x<ROWS;x++){
+                	for (int y = 0;y<COLUMNS;y++){
+                		//Colour cells
+                		if(((x==1 || x==2 || x==3) && (y==13 || y==14 || y==15)) || ((x==18 || x==19 || x==20) && (y==1 || y==2 || y==3)))
+                			newCell.setBackground(Color.WHITE);
+                		else if(x==0 || x==21 || y==0 || y==16)
+                			newCell.setBackground(new Color(64,64,64));
+                		else{
+                			newCell.setBackground(new Color(198,217,241));
+                		}
+        	        }
+                }
+        		newCell.setBorder(BorderFactory.createLineBorder(Color.GRAY, 0));
+        		grid[i][j] = newCell;
+				cells[i][j] = new JLabel();
+				grid[i][j].add(cells[i][j]);
+				add(newCell);
+	        }
+        }
+	}
+	
+	
+}

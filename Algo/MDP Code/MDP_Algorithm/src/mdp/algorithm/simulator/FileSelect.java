@@ -1,0 +1,90 @@
+package mdp.algorithm.simulator;
+
+import java.awt.BorderLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class FileSelect extends JPanel implements ActionListener {
+	static private final String newline = "\n";
+    JButton openButton;
+    JButton loadMapButton;
+    JTextArea log;
+    JFileChooser fc;
+    Simulator sim = new Simulator();
+    String fileName = "";
+    
+    public FileSelect() {
+        super(new BorderLayout());
+        log = new JTextArea(5,20);
+        log.setMargin(new Insets(5,5,5,5));
+        log.setEditable(false);
+        JScrollPane logScrollPane = new JScrollPane(log);
+
+        //Create a file chooser
+        fc = new JFileChooser();
+
+        openButton = new JButton("Open a Text File");
+        openButton.addActionListener(this);
+
+        loadMapButton = new JButton("Load Map");
+        loadMapButton.addActionListener(this);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(openButton);
+        buttonPanel.add(loadMapButton);
+
+        //Add the buttons and the log to this panel.
+        add(buttonPanel, BorderLayout.PAGE_START);
+        add(logScrollPane, BorderLayout.CENTER);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+
+        //Handle open button action.
+        if (e.getSource() == openButton) {
+            int returnVal = fc.showOpenDialog(FileSelect.this);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                //This is where a real application would open the file.
+                log.append("Opening: " + file.getName() + "." + newline);
+            } else {
+                log.append("Open command cancelled by user." + newline);
+            }
+            log.setCaretPosition(log.getDocument().getLength());
+
+        //Handle loadMap button action.
+        } else if (e.getSource() == loadMapButton) {
+        	File file = fc.getSelectedFile();
+        	fileName = file.getPath();
+        	System.out.print(fileName);
+        }
+    }
+    
+    public void createAndShowGUI() {
+        //Create and set up the window.
+        JFrame frame = new JFrame("FileSelectDemo");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //Add content to the window.
+        frame.add(new FileSelect());
+
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
+    }
+    
+    public String getFileName(){
+    	return fileName;
+    }
+
+}

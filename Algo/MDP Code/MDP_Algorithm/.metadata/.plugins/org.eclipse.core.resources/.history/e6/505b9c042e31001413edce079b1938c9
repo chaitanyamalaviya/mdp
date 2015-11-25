@@ -1,0 +1,58 @@
+package mdp_Algorithm_Simulator;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Maze extends JPanel{
+	private static final int ROWS = 22;
+	private static final int COLUMNS = 17;
+	
+	private static final Color DEFAULT = new Color(198,217,241);
+	private static final Color OBSTACLES = new Color(64,64,64);
+	private static final Color GOALSTART = Color.WHITE;
+	
+	private static final Color EXPLORED = new Color(255,255,102);
+	private static final Color ROBOT = new Color(146,208,80);
+	
+	JPanel[][] grid = new JPanel[ROWS][COLUMNS];
+	protected JLabel[][] labels = new JLabel[ROWS][COLUMNS];
+	
+	public Maze(){
+		mazeUI();
+	}
+	
+	private void mazeUI(){
+        setLayout(new GridLayout(ROWS, COLUMNS, 3, 3));
+    	
+        for (int x = 0;x<ROWS;x++){
+        	for (int y = 0;y<COLUMNS;y++){
+        		ColorGridCell newCell = new ColorGridCell(x,y);
+				newCell.setBorder(BorderFactory.createLineBorder(Color.RED, 1));
+				grid[x][y] = newCell;
+				labels[x][y] = new JLabel();
+				grid[x][y].add(labels[x][y]);
+				add(newCell);
+	        }
+        }
+	}
+}
+	
+class ColorGridCell extends JPanel {
+	   
+	   private int row;
+	   private int col;
+
+	   public ColorGridCell(int row, int col) {
+	      this.row = row;
+	      this.col = col;
+	      setBackground(Color.LIGHT_GRAY);
+}
+}

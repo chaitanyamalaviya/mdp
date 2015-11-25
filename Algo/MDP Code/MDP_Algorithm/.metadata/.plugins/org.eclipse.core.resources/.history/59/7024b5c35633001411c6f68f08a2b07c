@@ -1,0 +1,133 @@
+package mdp_Algorithm_Simulator;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Maze extends JPanel{
+	private static final int ROWS = 22;
+	private static final int COLUMNS = 17;
+	
+	private static final Color DEFAULT = new Color(198,217,241);
+	private static final Color OBSTACLES = new Color(64,64,64);
+	private static final Color GOALSTART = Color.WHITE;
+	
+	private static final Color EXPLORED = new Color(255,255,102);
+	private static final Color ROBOT = new Color(146,208,80);
+	
+	private static int robotMidPointRow = 18;
+	private static int robotMidPointCol = 3;
+	
+	JPanel[][] grid = new JPanel[ROWS][COLUMNS];
+	JLabel[][] cells = new JLabel[ROWS][COLUMNS];
+	
+	public Maze(){
+		mazeUI();
+		robot(robotMidPointRow, robotMidPointCol);
+		moveBackward();
+		moveBackward();
+		
+		
+		
+	}
+	
+	private void mazeUI(){
+        setLayout(new GridLayout(ROWS, COLUMNS, 3, 3));
+    	
+        for (int i = 0;i<ROWS;i++){
+        	for (int j = 0;j<COLUMNS;j++){
+        		JPanel newCell = new JPanel();
+        		//Colour cells
+        		if(((i==1 || i==2 || i==3) && (j==13 || j==14 || j==15)) || ((i==18 || i==19 || i==20) && (j==1 || j==2 || j==3)))
+        			newCell.setBackground(GOALSTART);
+        		else if(i==0 || i==21 || j==0 || j==16)
+        			newCell.setBackground(OBSTACLES);
+        		else{
+        			newCell.setBackground(DEFAULT);
+        		
+	        		//onClick
+					newCell.addMouseListener(new MouseAdapter() {
+		               	@Override
+		               	public void mouseClicked(MouseEvent e) {
+		               		JPanel clickedPanel = (JPanel) e.getSource();
+		               		if(clickedPanel.getBackground() == DEFAULT)
+		               			clickedPanel.setBackground(OBSTACLES);
+		               		else if(clickedPanel.getBackground() == OBSTACLES)
+		               			clickedPanel.setBackground(DEFAULT);
+		                }
+		             });
+				}
+        		grid[i][j] = newCell;
+				cells[i][j] = new JLabel();
+        		
+				
+				
+				grid[i][j].add(cells[i][j]);
+				add(newCell);
+	        }
+        }
+	}
+	
+	public void robot(int midPointRow, int midPointCol){
+		grid[midPointRow-1][midPointCol-1].setBackground(ROBOT);
+		grid[midPointRow][midPointCol-1].setBackground(ROBOT);
+		grid[midPointRow-1][midPointCol].setBackground(ROBOT);
+		grid[midPointRow-1][midPointCol+1].setBackground(ROBOT);
+		grid[midPointRow][midPointCol].setBackground(ROBOT);
+		grid[midPointRow+1][midPointCol+1].setBackground(ROBOT);
+		grid[midPointRow+1][midPointCol].setBackground(ROBOT);
+		grid[midPointRow][midPointCol+1].setBackground(ROBOT);
+		grid[midPointRow+1][midPointCol-1].setBackground(ROBOT);
+	}
+	
+	public void moveForward(){
+		if(robotMidPointRow > 2){
+			robotMidPointRow--;
+			robot(robotMidPointRow, robotMidPointCol);
+			grid[robotMidPointRow+2][robotMidPointCol].setBackground(EXPLORED);
+			grid[robotMidPointRow+2][robotMidPointCol+1].setBackground(EXPLORED);
+			grid[robotMidPointRow+2][robotMidPointCol-1].setBackground(EXPLORED);
+		}
+		else
+			System.out.println("WALL!");
+	}
+	
+	public void moveBackward(){
+		if(robotMidPointRow < 19){
+			robotMidPointRow++;
+			robot(robotMidPointRow, robotMidPointCol);
+			grid[robotMidPointRow-2][robotMidPointCol-1].setBackground(EXPLORED);
+			grid[robotMidPointRow-2][robotMidPointCol].setBackground(EXPLORED);
+			grid[robotMidPointRow-2][robotMidPointCol+1].setBackground(EXPLORED);
+		}
+		else
+			System.out.println("WALL!");
+	}
+	
+	public void moveLeft(){
+		if(robotMidPointCol > 2){
+			robotMidPointCol--;
+			robot(robotMidPointRow, robotMidPointCol);
+			grid[robotMidPointRow-1][robotMidPointCol+2].setBackground(EXPLORED);
+			grid[robotMidPointRow][robotMidPointCol+2].setBackground(EXPLORED);
+			grid[robotMidPointRow+1][robotMidPointCol+2].setBackground(EXPLORED);
+		}
+	}
+	
+	public void moveRight(){
+		robotMidPointCol++;
+		robot(robotMidPointRow, robotMidPointCol);
+		grid[robotMidPointRow-1][robotMidPointCol-2].setBackground(EXPLORED);
+		grid[robotMidPointRow][robotMidPointCol-2].setBackground(EXPLORED);
+		grid[robotMidPointRow+1][robotMidPointCol-2].setBackground(EXPLORED);
+	}
+	
+}

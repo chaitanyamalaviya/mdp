@@ -1,0 +1,19 @@
+package mdp_Algorithm_Simulator;
+
+import java.awt.Color;
+
+import javax.swing.JPanel;
+
+public class robot {
+	private static final Color ROBOT = new Color(146,208,80);
+	private static final int ROBOTROWSCOLUMNS = 3;
+	
+	public robot(int startMidPointRow, int startMidPointCol){
+		robotUI(startMidPointRow, startMidPointCol);
+	}
+	
+	public void robotUI(int startMidPoint, int startMidPointCol){
+		JPanel[][] grid = new JPanel[ROWS][COLUMNS];
+	}
+
+}

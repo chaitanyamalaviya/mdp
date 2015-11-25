@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BatMobot.iml" filepath="$PROJECT_DIR$/BatMobot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BatMobot_v4.iml" filepath="$PROJECT_DIR$/BatMobot_v4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BatMobot_v5.iml" filepath="$PROJECT_DIR$/BatMobot_v5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BatMobot_v6.iml" filepath="$PROJECT_DIR$/BatMobot_v6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BatMobot_v7.iml" filepath="$PROJECT_DIR$/BatMobot_v7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+    </modules>
+  </component>
+</project>
+

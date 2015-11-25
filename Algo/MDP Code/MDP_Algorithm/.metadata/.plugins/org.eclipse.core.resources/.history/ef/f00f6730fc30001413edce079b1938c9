@@ -1,0 +1,153 @@
+package mdp_Algorithm;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Simulator extends JFrame{
+	JFrame frame = new JFrame();
+	
+	public Simulator() {
+		frame.setTitle("Maze Simulator");
+		frame.setSize(1000, 1000);
+		frame.setBackground(Color.WHITE);
+		frame.setLocationRelativeTo(null);
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE); 
+		frame.setLayout(new GridLayout(2,2));
+		MazeUI();
+		ButtonUI();
+		LegendUI();
+    }
+
+    private void ButtonUI() {
+        frame.setLayout(new GridLayout(1, 5, 15, 1));
+        JButton explore = new JButton("Explore");
+        JButton timerExplore = new JButton("Timer Explore");
+        JButton percentExplore = new JButton("% Explore");
+        JButton solve = new JButton("Solve");
+        JButton reset = new JButton("Reset");
+        
+        explore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Explore");
+            }
+        });  
+        
+        timerExplore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Timer Explore");
+            }
+        });  
+        
+        percentExplore.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("% Explore");
+            }
+        });  
+        
+        solve.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Solve");
+            }
+        });  
+        
+        reset.addActionListener(new ActionListener() {
+       	 
+            public void actionPerformed(ActionEvent e)
+            {
+                //Execute when button is pressed
+                System.out.println("Reset");
+            }
+        });  
+        
+        frame.add(explore);
+        frame.add(timerExplore);
+        frame.add(percentExplore);
+        frame.add(solve);
+        frame.add(reset);
+        frame.pack();
+        frame.setVisible(true);
+
+    }
+
+    private void LegendUI(){
+    	JButton legendUI = new JButton("legendUI");
+    	frame.add(legendUI);
+    	frame.pack();
+        frame.setVisible(true);
+    }
+    
+	private void MazeUI(){
+        frame.setLayout(new GridLayout(22, 17, 3, 3));
+        JLabel[][] cells = new JLabel[22][17];
+        
+        for (int x = 0;x<22;x++){
+        	for (int y = 0;y<17;y++){
+        		cells[x][y]=new JLabel("");
+        		cells[x][y].setOpaque(true);
+	          
+        		//Colour cells
+        		if(((x==1 || x==2 || x==3) && (y==13 || y==14 || y==15)) || ((x==18 || x==19 || x==20) && (y==1 || y==2 || y==3)))
+                	cells[x][y].setBackground(Color.WHITE);
+        		else if(x==0 || x==21 || y==0 || y==16)
+                	cells[x][y].setBackground(new Color(64,64,64));
+        		else{
+	                	cells[x][y].setBackground(new Color(198,217,241));
+        			
+        			//onClick
+                    cells[x][y].addMouseListener(new MouseAdapter() {
+    	               	@Override
+    	               	public void mouseClicked(MouseEvent e) {
+    	                    JLabel clickedPanel = (JLabel) e.getSource();
+    	                    //Toggle colours    
+    	                    if (clickedPanel.getBackground()==new Color(64,64,64))
+    	                        clickedPanel.setBackground(new Color(198,217,241));
+    	                    else 
+    	                        clickedPanel.setBackground(new Color(64,64,64));
+    	                }
+    	             });
+        		}
+	        }
+        }
+        for (int x = 0;x<22;x++){
+        	for (int y = 0;y<17;y++){
+        		frame.add(cells[x][y]);
+        	}
+        }
+        frame.setVisible(true);
+	}
+	
+    
+    public static void main(String[] args) {
+
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+            	Simulator simulator = new Simulator();
+            }
+        });
+    }
+}

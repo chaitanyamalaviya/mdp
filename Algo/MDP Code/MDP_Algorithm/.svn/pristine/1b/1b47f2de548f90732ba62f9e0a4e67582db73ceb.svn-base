@@ -1,0 +1,157 @@
+package mdp.algorithm.explore;
+
+import mdp.algorithm.simulator.*;
+
+public class Exploration {
+	
+	private int robotMidPointRow, robotMidPointCol;
+	//Three sensors for front
+	private int sensorF1LocationRow, sensorF1LocationCol, sensorF2LocationRow, sensorF2LocationCol, sensorF3LocationRow, sensorF3LocationCol;
+	//One left and one right sensor (MID)
+	private int sensorLeftLocationRow, sensorLeftLocationCol, sensorRightLocationRow, sensorRightLocationCol;
+	private Maze maze;
+	
+	public void initRobot(Maze maze, int startRow, int startCol) {
+		this.maze = maze;
+		maze.setRobotMidPoint(startRow, startCol);
+		robotMidPointRow = this.maze.getRobotMidPointRow();
+		robotMidPointCol = this.maze.getRobotMidPointCol();
+		initSensorLocations();
+		initObstacles();
+		System.out.println("Robot Initialised.");
+	}
+	
+	public void startExplore() {
+		//initial check
+		System.out.println("Begin Explore");
+		nextStep();		
+	}
+	
+	private boolean nextStep() {
+		if (isFrontBlocked()) {
+			spinRight();
+			moveForward();
+		}
+		else {
+			moveForward();
+		}
+		return true;
+	}
+	
+	private void stop() {
+		System.out.println("Stop");
+	}
+	
+	private void initSensorLocations() {
+		int row, col;
+		switch(maze.getRobotOrientation()) {
+		//NORTH
+		case 0:	row = robotMidPointRow-2;
+				sensorF1LocationRow = sensorF2LocationRow = sensorF3LocationRow = row;
+				sensorF1LocationCol = robotMidPointCol-1;
+				sensorF2LocationCol = robotMidPointCol;
+				sensorF3LocationCol = robotMidPointCol+1;
+				
+				sensorLeftLocationRow = sensorRightLocationRow = robotMidPointRow;
+				sensorLeftLocationCol = robotMidPointCol-2;
+				sensorRightLocationCol = robotMidPointCol+2;
+				break;
+		//EAST
+		case 1:	col = robotMidPointCol+2;
+				sensorF1LocationCol = sensorF2LocationCol = sensorF3LocationCol = col;
+				sensorF1LocationRow = robotMidPointRow-1;
+				sensorF2LocationRow = robotMidPointRow;
+				sensorF3LocationRow = robotMidPointRow+1;
+				
+				sensorLeftLocationCol = sensorRightLocationCol = robotMidPointCol;
+				sensorLeftLocationRow = robotMidPointRow-2;
+				sensorRightLocationRow = robotMidPointRow+2;
+				break;
+		//SOUTH
+		case 2:	row = robotMidPointRow+2;
+				sensorF1LocationRow = sensorF2LocationRow = sensorF3LocationRow = row;
+				sensorF1LocationCol = robotMidPointCol+1;
+				sensorF2LocationCol = robotMidPointCol;
+				sensorF3LocationCol = robotMidPointCol-1;
+				
+				sensorLeftLocationRow = sensorRightLocationRow = robotMidPointRow;
+				sensorLeftLocationCol = robotMidPointCol+2;
+				sensorRightLocationCol = robotMidPointCol-2;
+				break;
+		//WEST
+		default:col = robotMidPointCol-2;
+				sensorF1LocationCol = sensorF2LocationCol = sensorF3LocationCol = col;
+				sensorF1LocationRow = robotMidPointRow+1;
+				sensorF2LocationRow = robotMidPointRow;
+				sensorF3LocationRow = robotMidPointRow-1;
+				
+				sensorLeftLocationCol = sensorRightLocationCol = robotMidPointCol;
+				sensorLeftLocationRow = robotMidPointRow+2;
+				sensorRightLocationRow = robotMidPointRow-2;
+				break;
+		}
+	}
+	
+	private boolean isFrontBlocked() {
+		boolean hasObstacles = (maze.checkObstacle(sensorF1LocationRow, sensorF1LocationCol) || 
+				maze.checkObstacle(sensorF2LocationRow, sensorF2LocationCol) || 
+						maze.checkObstacle(sensorF3LocationRow, sensorF3LocationCol));
+		
+		if (maze.checkObstacle(sensorF1LocationRow, sensorF1LocationCol))
+			maze.addObstacles(sensorF1LocationRow, sensorF1LocationCol);
+		if (maze.checkObstacle(sensorF2LocationRow, sensorF2LocationCol))
+			maze.addObstacles(sensorF2LocationRow, sensorF2LocationCol);
+		if (maze.checkObstacle(sensorF3LocationRow, sensorF3LocationCol))
+			maze.addObstacles(sensorF3LocationRow, sensorF3LocationCol);
+		
+		return hasObstacles;
+	}
+	
+	private boolean isLeftBlocked() {
+		boolean hasObstacles = maze.checkObstacle(sensorLeftLocationRow, sensorLeftLocationCol);
+		
+		if (hasObstacles)
+			maze.addObstacles(sensorLeftLocationRow, sensorLeftLocationCol);
+		
+		return hasObstacles;
+	}
+
+	private boolean isRightBlocked() {
+		boolean hasObstacles = maze.checkObstacle(sensorRightLocationRow, sensorRightLocationCol);
+		
+		if (hasObstacles)
+			maze.addObstacles(sensorRightLocationRow, sensorRightLocationCol);
+		
+		return hasObstacles;
+	}
+	
+	private void moveForward() {
+		maze.moveForward();
+		switch(maze.getRobotOrientation()) {
+		case 0:	robotMidPointRow-=1;
+				break;
+		case 1:	robotMidPointCol+=1;
+				break;
+		case 2: robotMidPointRow+=1;
+				break;
+		default:robotMidPointCol-=1;
+		}
+		initSensorLocations();
+	}
+	
+	private void spinRight() {
+		maze.spinRight();
+		initSensorLocations();
+	}
+	
+	private void backtrack() {
+		
+	}
+	
+	private void initObstacles() {
+		maze.setObstacles(7,7);
+		maze.setObstacles(7,8);
+		maze.setObstacles(7,9);
+	}
+	
+}

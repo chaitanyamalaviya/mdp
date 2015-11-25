@@ -1,0 +1,51 @@
+package mdp.algorithm.simulator;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JLabel;
+import javax.swing.Timer;
+
+public class Stopwatch{
+	private Timer stopwatchTimer;
+	public static final int ONE_SEC = 1000;
+	
+	private int clockTick = 0;
+	private int clockTimeMin;
+	private int clockTimeSec;
+	private String clockTimeString;
+	private int timeLimit = 8 * 60; // 8min
+	
+	public Stopwatch(int timeLimit){
+		this.timeLimit = timeLimit * 60;
+	}
+	
+	public void startStopwatchTimer(final JLabel exploreTimeValue){
+		stopwatchTimer = new Timer(ONE_SEC, new ActionListener() {
+		      public void actionPerformed(ActionEvent evt) {
+		    	if(clockTick < timeLimit){
+			    	clockTick++;
+			    	clockTimeMin = clockTick/60;
+			    	clockTimeSec = clockTick%60;
+					clockTimeString = String.format("%02d", clockTimeMin) + ":" + String.format("%02d", clockTimeSec);
+					exploreTimeValue.setText(clockTimeString);
+				}
+		    	else
+		    		stopwatchTimer.stop(); 
+			}
+		});
+		stopwatchTimer.start(); 
+	}
+	public void stopStopwatchTimer(){
+		stopwatchTimer.stop(); 
+	}
+	public void resetStopwatchTimer(){
+		clockTick = 0;
+	}
+	public void setTimeLimit(int timeLimit){
+		this.timeLimit = timeLimit * 60;
+	}
+	public int getTimeLimit(){
+		return this.timeLimit;
+	}
+}

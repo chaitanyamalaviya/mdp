@@ -1,0 +1,6 @@
+http://blogs.ntu.edu.sg/scemdp
+
+login
+---------
+username: <your NTU network account username>
+password: <userpassword>

@@ -1,0 +1,31 @@
+//Priscilla: This is a testing doct. 
+//http://zetcode.com/tutorials/javaswingtutorial/firstprograms/
+
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+
+public class SimpleExample extends JFrame {
+
+    public SimpleExample() {
+        //set header
+       setTitle("Simple example");
+       //set size
+       setSize(500, 200);
+       //set window to middle
+       setLocationRelativeTo(null);
+       //close window when clicked on "X"
+       setDefaultCloseOperation(EXIT_ON_CLOSE);        
+    }
+    
+
+ /*   public static void main(String[] args) {
+        
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                SimpleExample ex = new SimpleExample();
+                ex.setVisible(true);
+            }
+        });
+    }*/
+}

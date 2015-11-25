@@ -1,0 +1,57 @@
+package mdp.algorithm.fastestPath;
+
+import java.util.ArrayList;
+
+import mdp.algorithm.simulator.*;
+
+public class PathSolver {
+	private int rrow;
+	private int rcol;
+	private Maze maze = new Maze();
+	private ArrayList path = new ArrayList();
+	
+	public PathSolver(){
+		rrow = 2;
+		rcol = 2;
+	}
+	
+	public boolean checkObstacleUp(){
+		if(maze.checkObstacles(rrow+2,rcol-1)&&
+				maze.checkObstacles(rrow+2,rcol)&&
+				maze.checkObstacles(rrow+2,rcol+1))
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean checkObstacleDown(){
+		if(maze.checkObstacles(rrow-2,rcol-1)&&
+				maze.checkObstacles(rrow-2,rcol)&&
+				maze.checkObstacles(rrow-2,rcol+1))
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean checkObstacleLeft(){
+		if(maze.checkObstacles(rrow+1,rcol-2)&&
+				maze.checkObstacles(rrow,rcol-2)&&
+				maze.checkObstacles(rrow-1,rcol-2))
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean checkObstacleRight(){
+		if(maze.checkObstacles(rrow+1,rcol+2)&&
+				maze.checkObstacles(rrow,rcol+2)&&
+				maze.checkObstacles(rrow-1,rcol+2))
+			return true;
+		else
+			return false;
+	}
+	
+	public ArrayList findPath(){
+		return null;
+	}
+}

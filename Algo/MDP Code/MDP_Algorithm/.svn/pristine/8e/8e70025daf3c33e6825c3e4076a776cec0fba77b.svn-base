@@ -1,0 +1,41 @@
+package mdp.algorithm.explore;
+
+import mdp.algorithm.simulator.*;
+
+public class Exploration {
+	
+	private int robotMidPointRow, robotMidPointCol;
+	
+	public void startExplore(Maze maze) {
+		//initial check
+		robotMidPointRow = maze.getRobotMidPointRow();
+		robotMidPointRow = maze.getRobotMidPointCol();
+		
+		while(!maze.checkObstacle(robotMidPointRow, robotMidPointCol+2)) {
+			switch(maze.getRobotOrientation()) {
+				case 0: robotMidPointRow++;
+						break;
+				case 1:	robotMidPointCol++;
+						break;
+				case 2: robotMidPointRow--;
+						break;
+				default: robotMidPointCol--;
+			}
+			
+			maze.moveForward();
+		}
+		
+		maze.spinRight();
+		maze.moveForward();
+	}
+	
+	private boolean nextStep() {
+		
+		return true;
+	}
+		
+	private void backtrack() {
+		
+	}
+	
+}

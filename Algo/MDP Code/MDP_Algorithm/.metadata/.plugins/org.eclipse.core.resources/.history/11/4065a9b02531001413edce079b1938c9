@@ -1,0 +1,76 @@
+package mdp_Algorithm;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+
+public class Maze extends JPanel{
+	public Maze(){
+		mazeUI();
+	}
+	
+	private void mazeUI(){
+		setSize(510, 660);
+        setLayout(new GridLayout(22, 17, 3, 3));
+        JLabel[][] cells = new JLabel[22][17];
+        
+        for (int x = 0;x<22;x++){
+        	for (int y = 0;y<17;y++){
+        		cells[x][y]=new JLabel("");
+        		cells[x][y].setOpaque(true);
+	          
+        		//Colour cells
+        		if(((x==1 || x==2 || x==3) && (y==13 || y==14 || y==15)) || ((x==18 || x==19 || x==20) && (y==1 || y==2 || y==3)))
+                	cells[x][y].setBackground(Color.WHITE);
+        		else if(x==0 || x==21 || y==0 || y==16)
+                	cells[x][y].setBackground(new Color(64,64,64));
+        		else{
+	                	cells[x][y].setBackground(new Color(198,217,241));
+        			
+        			//onClick
+                    cells[x][y].addMouseListener(new MouseAdapter() {
+    	               	@Override
+    	               	public void mouseClicked(MouseEvent e) {
+    	                    JLabel clickedPanel = (JLabel) e.getSource();
+    	                    //Toggle colours    
+    	                    if (clickedPanel.getBackground()==new Color(64,64,64))
+    	                        clickedPanel.setBackground(new Color(198,217,241));
+    	                    else 
+    	                        clickedPanel.setBackground(new Color(64,64,64));
+    	                }
+    	             });
+        		}
+	        }
+        }
+        for (int x = 0;x<22;x++){
+        	for (int y = 0;y<17;y++){
+        		add(cells[x][y]);
+        	}
+        }
+	}
+	
+	/*public static void main(String[] args) {
+	
+	    EventQueue.invokeLater(new Runnable() {
+	        @Override
+	        public void run() {
+	        	Maze maze = new Maze();
+	        	maze.setVisible(true);
+	        }
+	    });*/
+	}
+}

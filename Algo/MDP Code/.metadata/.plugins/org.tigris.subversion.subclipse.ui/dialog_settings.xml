@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="500" key="CommitDialog.weights.0"/>
+	<item value="500" key="CommitDialog.weights.1"/>
+	<item value="71" key="CommitDialog.location.y"/>
+	<item value="373" key="CommitDialog.location.x"/>
+	<item value="C:/Users/Admin/Desktop/MDP SHARED/MDP_Algorithm/src/mdp/algorithm/simulator/Maze.java" key="TreeConflictsView.resource"/>
+	<item value="849" key="CommitDialog.size.x"/>
+	<item value="471" key="CommitDialog.size.y"/>
+	<item value="false" key="TreeConflictsView.container"/>
+	<item value="83" key="TreeConflictsView.col.Resource"/>
+	<item value="493" key="TreeConflictsView.col.Description"/>
+	<section name="CommitWizard">
+		<item value="false" key="ShowCompare"/>
+		<item value="500" key="VWeight2"/>
+		<item value="500" key="VWeight1"/>
+	</section>
+</section>
